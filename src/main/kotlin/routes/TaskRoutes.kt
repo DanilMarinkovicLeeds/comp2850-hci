@@ -58,7 +58,8 @@ fun Route.taskRoutes() {
     /**
      * Helper: Check if request is from HTMX
      */
-    fun ApplicationCall.isHtmx(): Boolean = request.headers["HX-Request"]?.equals("true", ignoreCase = true) == true
+    fun ApplicationCall.isHtmx(): Boolean = 
+        request.headers["HX-Request"]?.equals("true", ignoreCase = true) == true
 
     /**
      * GET /tasks - List all tasks
