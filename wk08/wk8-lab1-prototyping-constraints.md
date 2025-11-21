@@ -160,6 +160,8 @@ This ensures screen readers hear the result count whenever the list changes.
 ### 1.4 Update index page
 Modify `templates/tasks/index.peb` so it extends `_layout/base.peb`, renders the add form, and includes `_list.peb` and `_pager.peb` inside a `<div id="task-area">` container (we will populate `_pager.peb` shortly).
 
+**⚠️ Important:** Also update the add task form to `hx-target="#task-area"` with `hx-swap="innerHTML"` (not `#task-list` with `beforeend` from Week 7). Adding a task now affects pagination, so we replace the entire task area rather than appending a single item.
+
 ✋ **Checkpoint**: restart the server and confirm the tasks page renders exactly as before (no functionality has changed yet). If anything broke, inspect your partials and template paths.
 
 ### 1.5 Add production-ready UI with header/nav/footer partials (15 min)

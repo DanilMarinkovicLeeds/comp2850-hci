@@ -3,7 +3,7 @@
 <h1>Tasks</h1>
 
 <form action="/tasks" method="post"
-      hx-post="/tasks" hx-target="#task-list" hx-swap="beforeend">
+      hx-post="/tasks" hx-target="#task-area" hx-swap="innerHTML" hx-on::after-request="this.reset()">
   <label for="title">Title</label>
   <input id="title" name="title" required aria-describedby="title-hint">
   <small id="title-hint">Short and specific.</small>
