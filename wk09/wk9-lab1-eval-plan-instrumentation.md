@@ -1,28 +1,22 @@
 # Week 9 • Lab 1 — Evaluation Plan, Metrics Schema, and Instrumentation
 
-<div class="badges">
-  <span class="badge lo">LO1</span>
-  <span class="badge lo">LO3</span>
-  <span class="badge lo">LO4</span>
-  <span class="badge lo">LO5</span>
-  <span class="badge lo">LO6</span>
-  <span class="badge lo">LO8</span>
-  <span class="badge acm">HCI-Evaluation</span>
-  <span class="badge acm">SEP</span>
-  <span class="badge wcag">WCAG 2.2 AA</span>
-</div>
+![COMP2850](https://img.shields.io/badge/COMP2850-HCI-blue)
+![Week 9](https://img.shields.io/badge/Week-9-orange)
+![Lab 1](https://img.shields.io/badge/Lab-1-green)
+![Status](https://img.shields.io/badge/Status-Draft-yellow)
 
-> **Terminology Note**: Avoid "user." Prefer **person**, **participant**, **peer**, **pilot**, **customer**.
+
 
 ---
 
 ## Before Lab: Required Reading (20 mins)
 
-📖 **Essential**:
+📖 **Essential**
+- Pull Week 9 starter repo branch (baseline instrumentation stubs):
 - [Nielsen Norman Group: How to Conduct a Usability Test](https://www.nngroup.com/articles/usability-testing-101/)
 - [W3C: Measuring Accessibility](https://www.w3.org/WAI/test-evaluate/metrics/)
-- Review `../../references/evaluation-metrics-quickref.md`
-- Review `../../references/consent-pii-faq.md`
+- Review [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md)
+- Review [Consent and PII FAQ](../references/consent-pii-faq.md)
 
 📖 **Contextual**:
 - [hypermedia.systems: Instrumentation](https://hypermedia.systems/) (optional chapter if available)
@@ -40,26 +34,33 @@ Weeks 6–8 built a functional, accessible task list prototype. **Now the critic
 3. Prepare for peer pilots (Week 9 Lab 2)
 
 **Why this matters**:
-- **Gradescope Task 2** requires quantitative data (completion times, error rates) + qualitative insights
+- **Assessment** requires quantitative data (completion times, error rates) + qualitative insights
 - **Week 10 redesign** depends on identifying real bottlenecks (not guesses)
-- **Week 11 portfolio** needs evidence chains: problem → measurement → fix → verification
+- **Assessment portfolio (due end Week 10)** needs evidence chains: problem → measurement → fix → verification
 - **Industry practice**: Product decisions backed by data, not opinions
 
 **Ethical imperative**: Evaluation must respect privacy. We follow **low-risk peer study protocols**—no recordings, no PII, informed consent, opt-out honoured.
 
 ---
 
-## Learning Outcomes
+## Learning Focus
 
-By end of lab:
-1. **Define** evaluation tasks with clear success criteria (LO3, LO8)
-2. **Select** appropriate quantitative and qualitative metrics (LO4)
-3. **Write** an ethical, repeatable protocol for peer pilots (LO1, LO3)
-4. **Implement** server-side instrumentation to log events (LO5, LO6)
-5. **Verify** instrumentation captures data correctly for JS-on and JS-off paths (LO6)
+### Lab Objectives
 
-Maps to ACM: HCI-Evaluation (quantitative + qualitative methods), SEP (professional ethics)
-Maps to WCAG: 2.2 AA (evaluation must include accessibility testing)
+> **Staff reference**: Full instrumentation implementation lives in the [solution repository](../../resources/code-resources.md#week-9).
+By the end of this session, you will have:
+- Designed task-based evaluation protocol with 3+ tasks and clear success criteria
+- Defined metrics (time-on-task, errors, SUS, confidence)
+- Written an ethical, repeatable protocol for peer pilots
+- Instrumented codebase to capture metrics (server-side logging)
+- Verified instrumentation captures data correctly for JS-on and JS-off paths
+
+### Learning Outcomes Addressed
+This lab contributes to the following module Learning Outcomes ([full definitions](../references/learning-outcomes.md)):
+
+- **LO1**: Differentiate people-centred methods — evidenced by method selection rationale
+- **LO8**: Design and execute evaluation — evidenced by protocol + metrics + instrumentation
+- **LO13**: Integrate HCI with SE — evidenced by server-side instrumentation code
 
 ---
 
@@ -201,15 +202,15 @@ Maps to WCAG: 2.2 AA (evaluation must include accessibility testing)
 >
 > **Example — GOOD**:
 > ```csv
-> ts_iso,session_id,task_code,ms,js_mode
-> 2025-10-13T14:23:01Z,X7kL9p,T1,1800,on
+> ts_iso,session_id,request_id,task_code,step,outcome,ms,http_status,js_mode
+> 2025-10-13T14:23:01Z,X7kL9p,r001,T1_filter,success,,1800,200,on
 > ```
 > ✅ Anonymous, minimal, fit-for-purpose
 >
 > **UK context**: Data Protection Act 2018 + UK GDPR require **lawful basis** for processing. Low-risk peer studies at universities typically use "legitimate interest" or "consent" basis. **Must document** in protocol.
 >
-> 🔗 Review `../../references/consent-pii-faq.md` for full guidance
-> 🔗 [ICO: Privacy by Design](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-re../../references/accountability-and-governance/guide-to-accountability-and-governance/accountability-and-governance/data-protection-by-design-and-default/)
+> 🔗 Review [Consent and PII FAQ](../references/consent-pii-faq.md) for full guidance
+> 🔗 [ICO: Privacy by Design](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/accountability-and-governance/data-protection-by-design-and-default/)
 
 ### Median vs Mean
 
@@ -449,7 +450,7 @@ Adjust wording if anything is ambiguous.
 ```markdown
 # Metrics Definitions — Week 9
 
-Reference: `../../references/evaluation-metrics-quickref.md`
+Reference: [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md)
 
 ---
 
@@ -921,7 +922,7 @@ Confidence ratings (1–5):
 3. Note any missing data or anomalies
 
 **After all pilots**:
-1. Copy `data/metrics.csv` to `wk09/lab-wk9/submission/task1-draft/results.csv`
+1. Copy `data/metrics.csv` to `wk09/assessment/results.csv`
 2. Aggregate notes into themes (Week 10 lab)
 3. Calculate medians, error rates (Week 10 lab)
 
@@ -937,7 +938,7 @@ Confidence ratings (1–5):
 ### Screen Reader Session
 - Participant uses NVDA (Windows) or Orca (Linux)
 - Allow 2× time for navigation
-- Note announcements, label quality, live region behavior
+- Note announcements, label quality, live region behaviour
 - Capture SR output in notes (verbatim if possible)
 
 ### No-JS Session
@@ -1074,6 +1075,7 @@ ts_iso,session_id,request_id,task_code,step,outcome,ms,http_status,js_mode
 ```kotlin
 package utils
 
+import io.ktor.http.HttpStatusCode
 import java.io.File
 import java.time.Instant
 import java.time.format.DateTimeFormatter
@@ -1084,66 +1086,73 @@ import java.time.format.DateTimeFormatter
  *
  * Privacy: Ensure session_id is anonymous (no PII).
  */
+data class LogEntry(
+    val sessionId: String,
+    val requestId: String,
+    val taskCode: String,
+    val step: String,
+    val outcome: String,
+    val durationMs: Long,
+    val statusCode: Int,
+    val jsMode: String,
+)
+
 object Logger {
-    private val file = File("data/metrics.csv").apply {
-        parentFile?.mkdirs()
-        if (!exists()) {
-            writeText("ts_iso,session_id,request_id,task_code,step,outcome,ms,http_status,js_mode\n")
+    private val out =
+        File("data/metrics.csv").apply {
+            parentFile?.mkdirs()
+            if (!exists()) writeText("ts_iso,session_id,request_id,task_code,step,outcome,ms,http_status,js_mode\n")
         }
-    }
 
-    /**
-     * Write a single log entry.
-     *
-     * @param session Anonymous session ID (e.g., from cookie)
-     * @param req Request ID (unique per request, for tracing)
-     * @param task Task code (T1_filter, T2_edit, etc.)
-     * @param step Event type (start, success, validation_error, fail, server_error)
-     * @param outcome Specific outcome for errors (blank_title, max_length, etc.)
-     * @param ms Duration in milliseconds (0 if not applicable)
-     * @param status HTTP status code (200, 400, 500, etc.)
-     * @param js JavaScript mode ("on" or "off")
-     */
     @Synchronized
-    fun write(
-        session: String,
-        req: String,
-        task: String,
-        step: String,
-        outcome: String,
-        ms: Long,
-        status: Int,
-        js: String
-    ) {
+    fun write(entry: LogEntry) {
         val ts = DateTimeFormatter.ISO_INSTANT.format(Instant.now())
-        file.appendText("$ts,$session,$req,$task,$step,$outcome,$ms,$status,$js\n")
+        out.appendText(
+            "$ts,${entry.sessionId},${entry.requestId},${entry.taskCode},${entry.step}," +
+                "${entry.outcome},${entry.durationMs},${entry.statusCode},${entry.jsMode}\n",
+        )
     }
 
-    /**
-     * Convenience: log validation error with outcome.
-     */
     fun validationError(
-        session: String,
-        req: String,
-        task: String,
+        sessionId: String,
+        requestId: String,
+        taskCode: String,
         outcome: String,
-        ms: Long,
-        js: String
+        jsMode: String,
     ) {
-        write(session, req, task, "validation_error", outcome, ms, 400, js)
+        write(
+            LogEntry(
+                sessionId = sessionId,
+                requestId = requestId,
+                taskCode = taskCode,
+                step = "validation_error",
+                outcome = outcome,
+                durationMs = 0,
+                statusCode = HttpStatusCode.BadRequest.value,
+                jsMode = jsMode,
+            )
+        )
     }
 
-    /**
-     * Convenience: log success.
-     */
     fun success(
-        session: String,
-        req: String,
-        task: String,
-        ms: Long,
-        js: String
+        sessionId: String,
+        requestId: String,
+        taskCode: String,
+        durationMs: Long,
+        jsMode: String,
     ) {
-        write(session, req, task, "success", "", ms, 200, js)
+        write(
+            LogEntry(
+                sessionId = sessionId,
+                requestId = requestId,
+                taskCode = taskCode,
+                step = "success",
+                outcome = "",
+                durationMs = durationMs,
+                statusCode = HttpStatusCode.OK.value,
+                jsMode = jsMode,
+            )
+        )
     }
 }
 ```
@@ -1272,6 +1281,16 @@ post("/tasks") {
 - `POST /tasks/{id}/edit` with `T2_edit`
 - `DELETE /tasks/{id}` with `T4_delete`
 
+**Note on task codes**:
+- **Evaluation tasks** (T1-T4): These match the tasks defined in your evaluation protocol
+  - `T1_filter` — Search and filter the task list
+  - `T2_edit` — Edit or toggle task status
+  - `T3_add` — Add a new task
+  - `T4_delete` — Delete a task
+- **Baseline logging** (optional): You may also log general interactions not part of the evaluation
+  - `T0_list` — General task list view (not timed in evaluation)
+  - Helps distinguish evaluation sessions from general usage analytics
+
 ✋ **Stop and check**:
 - [ ] Logger.kt compiles and creates metrics.csv
 - [ ] Timing.kt provides timed{} helper
@@ -1360,7 +1379,7 @@ wk9s1: evaluation plan + server-side instrumentation
 - Implemented Timing.kt (timed{} helper, jsMode detection)
 - Instrumented POST /tasks with T3_add logging + validation errors
 - Dry-run verified: metrics.csv captures correct data for JS-on/off paths
-- Scaffolded Task 1 draft evidence pack (eval-plan.md, protocol.md)
+- Scaffolded assessment draft evidence pack (eval-plan.md, protocol.md)
 
 Ready for peer pilots in Week 9 Lab 2.
 
@@ -1373,7 +1392,7 @@ EOF
 
 **Answer in `wk09/reflection.md`**:
 
-1. **Metrics selection**: Which metrics will be most useful for identifying usability issues? Why did you prioritize objective vs subjective data?
+1. **Metrics selection**: Which metrics will be most useful for identifying usability issues? Why did you prioritise objective vs subjective data?
 
 2. **Ethical considerations**: What was most challenging about designing a privacy-respecting evaluation? How did you ensure no PII would be collected?
 
@@ -1393,7 +1412,7 @@ Next session (Lab 2):
 - Run 5–6 peer pilots using your protocol
 - Collect metrics.csv data + qualitative notes
 - Debrief participants
-- Prepare draft evidence pack for Task 1
+- Prepare draft evidence pack for assessment submission
 
 **Before Lab 2**:
 - Review protocol with your pair (practice reading consent script)
@@ -1408,8 +1427,8 @@ Next session (Lab 2):
 ## Further Reading & Resources
 
 ### Essential
-- `../../references/evaluation-metrics-quickref.md` — Median, MAD, error rate calculations
-- `../../references/consent-pii-faq.md` — PII definitions, opt-out procedures
+- [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md) — Median, MAD, error rate calculations
+- [Consent and PII FAQ](../references/consent-pii-faq.md) — PII definitions, opt-out procedures
 - [Nielsen: How Many Test Users?](https://www.nngroup.com/articles/how-many-test-users/) — 5 users find 85% of issues
 
 ### HCI Evaluation Methods
@@ -1418,7 +1437,7 @@ Next session (Lab 2):
 - [Measuring UX](https://measuringux.com/) — Practical guide to quantitative UX
 
 ### Ethics & Privacy
-- [ICO: Data Protection by Design](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-re../../references/accountability-and-governance/guide-to-accountability-and-governance/accountability-and-governance/data-protection-by-design-and-default/)
+- [ICO: Data Protection by Design](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/accountability-and-governance/data-protection-by-design-and-default/)
 - [BPS Code of Ethics](https://www.bps.org.uk/guideline/code-ethics-and-conduct) — UK professional standards for research
 - [University of Leeds Research Ethics](https://researchsupport.leeds.ac.uk/research-ethics/) — Institutional policy
 

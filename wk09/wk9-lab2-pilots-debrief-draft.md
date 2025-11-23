@@ -1,33 +1,26 @@
-# Week 9 • Lab 2 — Peer Pilots, Debrief, and Task 1 Draft Pack
+# Week 9 • Lab 2 — Peer Pilots, Debrief, and Assessment Draft Pack
 
-<div class="badges">
-  <span class="badge lo">LO1</span>
-  <span class="badge lo">LO3</span>
-  <span class="badge lo">LO4</span>
-  <span class="badge lo">LO6</span>
-  <span class="badge lo">LO8</span>
-  <span class="badge lo">LO11</span>
-  <span class="badge lo">LO12</span>
-  <span class="badge lo">LO13</span>
-  <span class="badge acm">HCI-Evaluation</span>
-  <span class="badge acm">A&I</span>
-  <span class="badge wcag">WCAG 2.2 AA</span>
-</div>
+![COMP2850](https://img.shields.io/badge/COMP2850-HCI-blue)
+![Week 9](https://img.shields.io/badge/Week-9-orange)
+![Lab 2](https://img.shields.io/badge/Lab-2-green)
+![Status](https://img.shields.io/badge/Status-Draft-yellow)
 
-> **Terminology Note**: Avoid "user." Prefer **person**, **participant**, **peer**, **pilot**.
+
 
 ---
 
 ## Before Lab: Required Reading (10 mins)
 
 📖 **Essential**:
+- Push/log Week 9 starter repo instrumentation before pilots
 - Review your Week 9 Lab 1 protocol (`wk09/lab-wk9/research/protocol.md`)
-- Review `../../references/consent-pii-faq.md`
+- Review `references/consent-pii-faq.md`
 - [Nielsen: How Many Test Users in Usability Studies?](https://www.nngroup.com/articles/how-many-test-users/)
 
 📖 **Quick reference**:
-- `../../references/evaluation-metrics-quickref.md`
-- `../../references/assistive-testing-checklist.md`
+- [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md)
+- [Assistive Testing Checklist](../references/assistive-testing-checklist.md)
+- [Screenshot Evidence Guide](../references/screenshot-guide.md)
 
 ---
 
@@ -38,28 +31,37 @@ Week 9 Lab 1 built the evaluation infrastructure. **Today you execute**.
 Running peer pilots is **the most critical empirical HCI activity** in this module:
 - **Data collection**: Objective metrics (time, errors, completion) + subjective (confidence, satisfaction)
 - **Qualitative insights**: Observe real struggles, accessibility barriers, unexpected behaviours
-- **Evidence generation**: Logs, notes, screenshots for Gradescope Task 1 and Week 11 portfolio
+- **Evidence generation**: Logs, notes, screenshots for assessment portfolio (due end Week 10)
 
 **Why this matters**:
 - Week 10 redesign **depends on** identifying real problems (not assumed ones)
-- Task 1 grade depends on evidence quality (traceability from raw data → findings → mitigations)
+- Assessment grade depends on evidence quality (traceability from raw data → findings → mitigations)
 - Professional practice: Decisions backed by data, not opinions
 
 **Ethical imperative**: Participants are peers, not research subjects. Treat them respectfully, honour consent, protect privacy.
 
 ---
 
-## Learning Outcomes
+## Learning Focus
 
-By end of lab:
-1. **Conduct** 5–6 peer pilots following ethical protocol (LO3, LO8)
-2. **Collect** quantitative data (metrics.csv) and qualitative observations (pilot-notes) (LO4, LO6)
-3. **Identify** usability and accessibility issues through systematic observation (LO1, LO3)
-4. **Document** findings with evidence chains (raw data → issue → backlog item) (LO11, LO12)
-5. **Assemble** draft Task 1 evidence pack (plan, data, findings, artefacts) (LO13)
+### Lab Objectives
 
-Maps to ACM: HCI-Evaluation (quantitative + qualitative methods), A&I (Accessibility & Inclusion)
-Maps to WCAG: 2.2 AA (evaluation must include disabled participants or rigorous proxy testing)
+> **Staff reference**: Sample data + completed pilot pack available in the [solution repository](../../resources/code-resources.md#week-9).
+By the end of this session, you will have:
+- Conducted 4 peer pilots following ethical protocol
+- Collected quantitative data (time-on-task, errors, SUS) and qualitative observations
+- Taken observer notes (quotes, errors, time-on-task)
+- Debriefed with participants and synthesised findings
+- Documented findings with evidence chains (raw data → issue → backlog item)
+- Assembled draft assessment evidence pack
+
+### Learning Outcomes Addressed
+This lab contributes to the following module Learning Outcomes ([full definitions](../references/learning-outcomes.md)):
+
+- **LO6**: Apply iterative design — evidenced by pilot data → findings synthesis
+- **LO8**: Design and execute evaluation — evidenced by 4 pilot sessions + data
+- **LO11**: Collaborate in teams — evidenced by peer pilot facilitation + observer role
+- **LO12**: Demonstrate professionalism — evidenced by consent adherence + respectful facilitation
 
 ---
 
@@ -153,7 +155,7 @@ Maps to WCAG: 2.2 AA (evaluation must include disabled participants or rigorous 
 > 6. **Verification**: Retest with screen reader, confirm announcement
 >
 > **Why this matters**:
-> - **Gradescope Task 1**: Markers check evidence chains (no evidence = no marks)
+> - **Assessment**: Markers check evidence chains (no evidence = no marks)
 > - **Professional practice**: Design decisions require justification
 > - **Accreditation**: External panels expect rigorous HCI process
 >
@@ -695,11 +697,11 @@ wk9-05,9,high,a11y,"Result count after filter not announced to SR",4.1.3,open,"p
 
 ---
 
-## Activity E: Assemble Task 1 Draft Pack (20 min)
+## Activity E: Assemble Assessment Draft Pack (20 min)
 
-**Goal**: Create a complete evidence pack for Gradescope Task 1 submission (will be refined in Week 11).
+**Goal**: Create a complete evidence pack for assessment submission (to be refined and submitted by end Week 10).
 
-**Directory structure**: `wk09/lab-wk9/submission/task1-draft/`
+**Directory structure**: `wk09/assessment/`
 
 ### Step 1: Copy evaluation plan materials (5 min)
 
@@ -728,12 +730,12 @@ wk9-05,9,high,a11y,"Result count after filter not announced to SR",4.1.3,open,"p
 
 Option A: Copy relevant rows from `data/metrics.csv`:
 ```bash
-grep -E "P1_|P2_|P3_|P4_|P5_" data/metrics.csv > wk09/lab-wk9/submission/task1-draft/04-results.csv
+grep -E "P1_|P2_|P3_|P4_|P5_" data/metrics.csv > wk09/assessment/04-results.csv
 ```
 
 Option B: Symbolic link (keeps data in one place):
 ```bash
-ln -s ../../../data/metrics.csv wk09/lab-wk9/submission/task1-draft/04-results.csv
+ln -s ../../../data/metrics.csv wk09/assessment/04-results.csv
 ```
 
 **Include README.md** explaining columns:
@@ -772,7 +774,7 @@ ln -s ../../../data/metrics.csv wk09/lab-wk9/submission/task1-draft/04-results.c
 **Create `06-evidence/` directory**:
 
 ```
-wk09/lab-wk9/submission/task1-draft/06-evidence/
+wk09/assessment/06-evidence/
 ├── screenshots/
 │   ├── t2-validation-error-nojs.png
 │   ├── t1-filter-results.png
@@ -787,7 +789,7 @@ wk09/lab-wk9/submission/task1-draft/06-evidence/
 **Remove any PII** from screenshots and notes.
 
 ✋ **Stop and check**:
-- [ ] Evaluation plan + protocol copied to task1-draft/
+- [ ] Evaluation plan + protocol copied to assessment/
 - [ ] Quantitative data (metrics.csv) included or linked
 - [ ] Findings document complete with statistics + evidence chains
 - [ ] Evidence artefacts collected (screenshots, notes)
@@ -800,17 +802,17 @@ wk09/lab-wk9/submission/task1-draft/06-evidence/
 ### Commit message
 
 ```bash
-git add data/metrics.csv backlog/backlog.csv wk09/lab-wk9/research wk09/lab-wk9/submission
+git add data/metrics.csv backlog/backlog.csv wk09/research wk09/assessment
 
 git commit -m "$(cat <<'EOF'
-wk9s2: completed peer pilots (n=5), assembled Task 1 draft pack
+wk9s2: completed peer pilots (n=5), assembled assessment draft pack
 
 - Conducted 5 peer pilots: 3 standard (HTMX), 1 keyboard-only, 1 no-JS
 - Collected quantitative data: completion rates (80-100%), median times (2s–19s), error rates (20-33% for T2/T3)
 - Captured qualitative observations: validation error accessibility issues, status feedback insufficient, filter UX expectations
 - Verified no-JS parity: functional but 6× slower (expected)
 - Created evidence chains: raw data → findings → backlog items (wk9-01 to wk9-05)
-- Assembled Task 1 draft pack: plan, protocol, results.csv, findings.md, evidence artefacts
+- Assembled assessment draft pack: plan, protocol, results.csv, findings.md, evidence artefacts
 - Identified Priority 1 fixes for Week 10: validation error accessibility (role=alert, aria-describedby, focusable summary)
 
 Key findings:
@@ -838,7 +840,7 @@ EOF
 
 4. **Qualitative insights**: What did observation reveal that logs couldn't capture? How valuable was think-aloud (if used)?
 
-5. **Accessibility impact**: Which findings have highest inclusion impact? How would you prioritize fixes if you could only do one?
+5. **Accessibility impact**: Which findings have highest inclusion impact? How would you prioritise fixes if you could only do one?
 
 6. **Week 10 readiness**: What are your Priority 1 fixes? How will you verify they worked?
 
@@ -847,11 +849,11 @@ EOF
 ## Looking Ahead: Week 10 Analysis & Redesign
 
 Next week:
-- **Lab 1**: Analyse metrics in depth (median, MAD, error rates), prioritize backlog with inclusion × impact scores, plan redesign
-- **Lab 2**: Implement Priority 1-2 fixes, re-verify accessibility, update backlog, prepare Task 2 evidence pack
+- **Lab 1**: Analyse metrics in depth (median, MAD, error rates), prioritise backlog with inclusion × impact scores, plan redesign
+- **Lab 2**: Implement Priority 1-2 fixes, re-verify accessibility, update backlog, finalise assessment submission
 
 **Before Week 10**:
-- Review `../../references/evaluation-metrics-quickref.md` for analysis formulas
+- Review [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md) for analysis formulas
 - Refresh WCAG 2.2 guidelines for fixes (3.3.1, 4.1.3)
 - Think about trade-offs: which fixes are quick wins vs major refactors?
 
@@ -861,7 +863,7 @@ Next week:
 
 ### Essential
 - Review Week 9 Lab 1 (evaluation planning) for context
-- `../../references/evaluation-metrics-quickref.md` — Median, MAD, error rate formulas
+- [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md) — Median, MAD, error rate formulas
 - [GOV.UK: Analysing user research](https://www.gov.uk/service-manual/user-research/analyse-a-research-session)
 
 ### HCI Evaluation
@@ -874,7 +876,7 @@ Next week:
 - [GOV.UK: Analysing qualitative data](https://www.gov.uk/service-manual/user-research/analyse-a-research-session)
 
 ### Ethics
-- Review `../../references/consent-pii-faq.md`
+- Review `references/consent-pii-faq.md`
 - [BPS Code of Ethics](https://www.bps.org.uk/guideline/code-ethics-and-conduct)
 
 ---
@@ -896,4 +898,4 @@ Next week:
 
 ---
 
-**Lab complete!** You have real pilot data, evidence chains, and a draft Task 1 pack. Week 10 will analyse this data rigorously and implement prioritised fixes.
+**Lab complete!** You have real pilot data, evidence chains, and a draft assessment pack. Week 10 will analyse this data rigorously, implement prioritised fixes, and finalise your assessment submission (due end Week 10).

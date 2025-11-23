@@ -1,37 +1,24 @@
 # Week 11 • Lab 1 — Evidence-Led Studio Crit
 
-<div class="badges">
-  <span class="badge lo">LO1</span>
-  <span class="badge lo">LO3</span>
-  <span class="badge lo">LO4</span>
-  <span class="badge lo">LO5</span>
-  <span class="badge lo">LO6</span>
-  <span class="badge lo">LO8</span>
-  <span class="badge lo">LO9</span>
-  <span class="badge lo">LO10</span>
-  <span class="badge lo">LO11</span>
-  <span class="badge lo">LO12</span>
-  <span class="badge lo">LO13</span>
-  <span class="badge acm">HCI-Design</span>
-  <span class="badge acm">HCI-Evaluation</span>
-  <span class="badge acm">A&I</span>
-  <span class="badge wcag">WCAG 2.2 AA</span>
-</div>
+![COMP2850](https://img.shields.io/badge/COMP2850-HCI-blue)
+![Week 11](https://img.shields.io/badge/Week-11-orange)
+![Lab 1](https://img.shields.io/badge/Lab-1-green)
+![Status](https://img.shields.io/badge/Status-Draft-yellow)
 
-> **Terminology Note**: Avoid "user." Prefer **person**, **participant**, **peer**, **pilot**, **customer**.
+
 
 ---
 
 ## Before Lab: Required Reading (10 mins)
 
-📖 **Essential**:
+📖 **Essential**
 - [IDEO: The Art of Critique](https://www.ideo.com/blog/design-critique) (5 min)
-- Review your Task 2 bundle (`wk10/gradescope/task2/`)
-- Review `analysis/summary.md` (before/after metrics)
+- Review your assessment submission (submission-template.md with all sections complete)
+- Review your before/after metrics (Section 5: Verification Results)
 
-📖 **Quick reference**:
-- `../../references/assistive-testing-checklist.md`
-- `../../references/evaluation-metrics-quickref.md`
+📖 **Quick reference**
+- [Assistive Testing Checklist](../references/assistive-testing-checklist.md)
+- [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md)
 
 ---
 
@@ -51,18 +38,29 @@ You've completed the HCI design cycle: audit → pilot → analyse → redesign 
 
 **Format**: 15 min per team (5 min demo, 3 min metrics, 2 min accessibility proof, 5 min Q&A). Tight timing forces clarity.
 
+> **Visual**: Evidence-led critique loop
+
+{{#include ../references/visuals/crit-loop.md}}
+
+<small>See [Process Visuals](../references/process-visuals.md#crit-loop) for captioned steps.</small>
+
 ---
 
-## Learning Outcomes
+## Learning Focus
 
-By end of lab:
-1. **Present** evidence chains clearly (problem → data → fix → verification) (LO11, LO12)
-2. **Demonstrate** accessibility improvements (keyboard, SR, no-JS) (LO9, LO10)
-3. **Defend** design decisions with data (before/after metrics) (LO3, LO4, LO8)
-4. **Critique** peers' work constructively (identify gaps, suggest improvements) (LO1, LO5, LO6)
-5. **Reflect** on feedback received and update backlog (LO13)
+### Lab Objectives
+By the end of this session, you will have:
+- Presented evidence chains clearly (problem → data → fix → verification)
+- Demonstrated accessibility improvements (keyboard, SR, no-JS)
+- Defended design decisions with data (before/after metrics)
+- Given/received peer feedback using structured rubric
+- Documented crit insights for portfolio
 
-Maps to ACM: HCI-Design (communication), HCI-Evaluation (presenting findings), A&I (inclusive design justification)
+### Learning Outcomes Addressed
+This lab contributes to the following module Learning Outcomes ([full definitions](../references/learning-outcomes.md)):
+
+- **LO11**: Collaborate in teams — evidenced by peer critique participation
+- **LO12**: Demonstrate professionalism — evidenced by constructive feedback + respectful critique
 Maps to WCAG: 2.2 AA (demonstrating compliance)
 
 ---
@@ -71,17 +69,17 @@ Maps to WCAG: 2.2 AA (demonstrating compliance)
 
 ### Design Critique
 
-> **Design Critique** [GLOSSARY]
+> **Design Critique** ([Glossary](../references/glossary.md))
 >
 > Structured peer review of design work. **Not personal feedback**—focuses on work, evidence, impact.
 >
-> **Characteristics**:
+> **Characteristics**
 > - **Specific**: "Error summary not keyboard-focusable" (good) vs "errors bad" (vague)
 > - **Constructive**: Suggest alternatives, not just problems
 > - **Evidence-based**: Reference data, WCAG, observations (not opinions)
 > - **Respectful**: Assume positive intent, acknowledge constraints
 >
-> **Format** (this module):
+> **Format** (this module)
 > - Presenter shows work + evidence
 > - Audience asks clarifying questions
 > - Audience offers critique: "I noticed X, have you considered Y?"
@@ -89,29 +87,29 @@ Maps to WCAG: 2.2 AA (demonstrating compliance)
 >
 > **HCI Connection**: Critique improves design through **external perspective**—you're too close to your work to see all issues.
 >
-> **Not a critique**:
-> - "I don't like the color" (subjective preference without rationale)
+> **Not a critique**
+> - "I don't like the colour" (subjective preference without rationale)
 > - "This sucks" (not constructive)
 > - "You should have..." (hindsight, not helpful)
 >
-> **Good critique**:
+> **Good critique**
 > - "The error message says 'Title required' but doesn't explain the max length constraint. Pilot P3 hit this—could you add that info?"
 >
-> 🔗 [Design Thinking: Critique vs Criticism](https://dschool.stanford.edu/re../../references/the-art-of-critique)
+> 🔗 [Design Thinking: Critique vs Criticism](https://dschool.stanford.edu/resources/the-art-of-critique)
 
 ### Evidence-Led Presentation
 
-> **Evidence-Led Presentation** [GLOSSARY]
+> **Evidence-Led Presentation** ([Glossary](../references/glossary.md))
 >
 > Presentation style where every claim is backed by artifacts (data, screenshots, quotes).
 >
-> **Structure**:
+> **Structure**
 > 1. **Problem**: "T2 edit had 67% completion (0% no-JS)" ← metric
 > 2. **Root cause**: "Validation errors not announced to SR" ← pilot quote + WCAG reference
 > 3. **Fix**: "Added `role=alert`" ← code diff
 > 4. **Verification**: "Post-change: 100% completion" ← after-metrics + screenshot
 >
-> **What NOT to do**:
+> **What NOT to do**
 > - "We made it better" (vague—better how?)
 > - "Users struggled" (who? how many? with what?)
 > - "Fixed accessibility" (which criteria? verified how?)
@@ -124,11 +122,11 @@ Maps to WCAG: 2.2 AA (demonstrating compliance)
 
 ### Accessibility Demonstration
 
-> **Accessibility Demonstration** [GLOSSARY]
+> **Accessibility Demonstration** ([Glossary](../references/glossary.md))
 >
 > Live proof that inclusive design works. **Show, don't tell**.
 >
-> **Examples**:
+> **Examples**
 > - **Keyboard**: Tab through form → submit error → Tab to error link → press Enter → focus lands on input
 > - **Screen reader**: Turn on NVDA/Orca → navigate to form → submit error → SR announces "Alert. Title is required"
 > - **No-JS**: Disable JavaScript → submit form → error summary appears and focused
@@ -137,12 +135,12 @@ Maps to WCAG: 2.2 AA (demonstrating compliance)
 >
 > **Backup plan**: If live demo fails (demo gremlins), have **video recording** or **annotated screenshots** ready.
 >
-> **What to show**:
+> **What to show**
 > - Before state (broken or suboptimal)
 > - After state (fixed)
 > - Evidence it meets WCAG (checklist row, transcript)
 >
-> **Common mistakes**:
+> **Common mistakes**
 > - Only showing HTMX path (ignoring no-JS)
 > - Not narrating what's happening ("I'm pressing Tab, now I'm on the error link...")
 > - Assuming audience sees what you see (make focus indicators obvious, zoom in if needed)
@@ -151,24 +149,24 @@ Maps to WCAG: 2.2 AA (demonstrating compliance)
 
 ### Constructive Feedback
 
-> **Constructive Feedback** [GLOSSARY]
+> **Constructive Feedback** ([Glossary](../references/glossary.md))
 >
 > Feedback that helps recipient improve. Has three parts: observation + impact + suggestion.
 >
-> **Formula**:
+> **Formula**
 > 1. **Observation**: "I noticed X" (specific, factual)
 > 2. **Impact**: "This might affect Y" (consequence, not judgment)
 > 3. **Suggestion**: "Have you considered Z?" (alternative, not mandate)
 >
-> **Example (good)**:
+> **Example (good)**
 > - Observation: "Your error summary uses `aria-live=assertive`, which I saw announced in your SR demo"
 > - Impact: "In my testing, `assertive` interrupted mid-sentence when I was reading other content"
 > - Suggestion: "Have you tested with `aria-live=polite` to see if it's less disruptive? Might be a good trade-off if errors aren't time-critical."
 >
-> **Example (bad)**:
+> **Example (bad)**
 > - "You should use `polite` not `assertive`" ← prescriptive, no context
 >
-> **Receiving feedback**:
+> **Receiving feedback**
 > - **Listen**: Don't defend immediately (note it, reflect later)
 > - **Clarify**: "Can you show me where you saw that?"
 > - **Thank**: Even if you disagree, feedback is effort
@@ -187,11 +185,11 @@ Maps to WCAG: 2.2 AA (demonstrating compliance)
 
 **5-slide structure**:
 
-1. **Title slide**: Project name, team, date
-2. **Problem + Evidence**: What was broken? (metrics, quotes, WCAG violations)
-3. **Solution**: What changed? (code diff, screenshots)
-4. **Verification**: How do we know it worked? (after-metrics, regression checklist)
-5. **Next Steps**: What remains? (backlog, Semester 2 plans)
+1. **Title slide** — Project name, team, date
+2. **Problem + Evidence** — What was broken? (metrics, quotes, WCAG violations)
+3. **Solution** — What changed? (code diff, screenshots)
+4. **Verification** — How do we know it worked? (after-metrics, regression checklist)
+5. **Next Steps** — What remains? (backlog, Semester 2 plans)
 
 **Example**:
 
@@ -215,7 +213,7 @@ Maps to WCAG: 2.2 AA (demonstrating compliance)
 
 ### Step 2: Select key evidence artifacts (10 min)
 
-**From `wk10/gradescope/task2/05-evidence/`**:
+**From your `evidence/` folder (Section 6 of assessment)**:
 
 **Screenshots** (3-4 max):
 - Before: Error present but not accessible (no `role=alert` in devtools)
@@ -360,8 +358,8 @@ After: "Alert. Title is required. Please enter at least one character."
 - **Action**: Update wk10/lab-wk10/docs/redesign-brief.md notes section
 
 ### Staff
-- **Q**: "Why did you prioritize T2 over T1 when T1 had higher error rate?"
-- **Response**: T2 had 0% no-JS completion (complete block) vs T1 100% completion (just slower). Prioritized exclusion over efficiency.
+- **Q**: "Why did you prioritise T2 over T1 when T1 had higher error rate?"
+- **Response**: T2 had 0% no-JS completion (complete block) vs T1 100% completion (just slower). Prioritised exclusion over efficiency.
 - **Validation**: Staff agreed with prioritization framework logic.
 ```
 
@@ -456,7 +454,7 @@ What should this team consider for Semester 2?
 - Partial = Some criteria met, gaps acknowledged
 - Fail = Claims compliance but no evidence
 
-**Recommended grade** (if this were Task 2 submission): [Estimate 0-100]
+**Recommended grade** (if this were assessment submission): [Estimate 0-100]
 
 **Justification**: [2-3 sentences linking grade to evidence quality, inclusion impact, WCAG compliance]
 ```
@@ -493,7 +491,7 @@ What should this team consider for Semester 2?
 ```markdown
 ## Feedback Themes
 
-### Critical (Address before Task 2 submission)
+### Critical (Address before assessment submission)
 - Team Beta: "aria-live=assertive too intrusive" → Test polite vs assertive
 - Staff: "No evidence of VoiceOver testing" → Either test or document limitation
 
@@ -517,12 +515,12 @@ wk11-01,11,high,a11y,"Verify SR compatibility with VoiceOver (macOS)",,"open","w
 
 wk11-02,11,medium,a11y,"Focus indicator contrast below WCAG AAA (2.8:1)",1.4.11,open,"wk11/crit/feedback-received.md Team Beta; WCAG 2.2 Focus Appearance","Increase focus outline to darker blue (#0000aa) for 3:1 contrast",true
 
-wk11-03,11,high,ux,"Remaining 25% error rate on T2—investigate cause",,"open","wk10/gradescope/task2/03-before-after-summary.md; wk11/crit/feedback-received.md Staff","Run additional pilot focusing on error triggers, check focus management",false
+wk11-03,11,high,ux,"Remaining 25% error rate on T2—investigate cause",,"open","submission-template.md Section 5 Part B; wk11/crit/feedback-received.md Staff","Run additional pilot focusing on error triggers, check focus management",false
 ```
 
 **Mark completed feedback actions**:
 ```csv
-wk9-01,9,high,a11y,"Validation errors not announced by SR",4.1.3,fixed,"data/metrics.csv; wk10/gradescope/task2/05-evidence/sr-transcripts/after-nvda.txt","Addressed in Week 10 Lab 2: added role=alert + aria-live=assertive",true
+wk9-01,9,high,a11y,"Validation errors not announced by SR",4.1.3,fixed,"data/metrics.csv; evidence/sr-transcripts/after-nvda.txt","Addressed in Week 10 Lab 2: added role=alert + aria-live=assertive",true
 ```
 
 ### Step 3: Write reflection (5 min)
@@ -550,12 +548,12 @@ wk9-01,9,high,a11y,"Validation errors not announced by SR",4.1.3,fixed,"data/met
 Team Beta's observation about `aria-live=assertive` being too intrusive. I experienced this myself during testing but dismissed it—their feedback validated my concern. Will test `polite` alternative.
 
 **Most surprising critique**:
-Staff asked why I prioritized T2 over T1 when T1 had higher error rate. I explained: T2 had 0% no-JS completion (exclusion) vs T1 100% completion (efficiency). Staff agreed but noted I should have made this explicit in presentation. Lesson: state prioritization criteria upfront.
+Staff asked why I prioritised T2 over T1 when T1 had higher error rate. I explained: T2 had 0% no-JS completion (exclusion) vs T1 100% completion (efficiency). Staff agreed but noted I should have made this explicit in presentation. Lesson: state prioritization criteria upfront.
 
 **Hardest to hear**:
 Team Alpha noted focus indicator contrast issue (2.8:1, below 3:1). I checked this in Week 8 but forgot to fix it. Embarrassing oversight—logged wk11-02 to address.
 
-## Changes for Task 2 Submission
+## Changes for assessment Submission
 
 Based on feedback:
 1. **Add VoiceOver testing note** to `02-regression-checklist.csv`: "Tested with NVDA (Windows) and Orca (Linux). VoiceOver (macOS) not tested—recommend for Semester 2."
@@ -578,7 +576,7 @@ Team Gamma used UMUX-Lite subjective measure (2 questions, 1-7 scale). We didn't
 1. Test `aria-live=polite` vs `assertive` (30 min)
 2. Add VoiceOver limitation note to regression checklist (5 min)
 3. Document focus indicator issue in before-after summary (10 min)
-4. Final proofread of Task 2 bundle (30 min)
+4. Final proofread of assessment bundle (30 min)
 
 **Semester 2 priorities** (based on backlog):
 - Fix focus indicator contrast (wk11-02)
@@ -632,7 +630,7 @@ EOF
 ## Looking Ahead: Week 11 Lab 2
 
 Final session:
-- **Polish Task 1 & 2** based on crit feedback
+- **Polish assessment & 2** based on crit feedback
 - **Assemble portfolio** with evidence chains
 - **Practice submission** process (Gradescope upload, file check)
 - **Module reflection** and Semester 2 planning
@@ -647,7 +645,7 @@ Final session:
 ## Further Reading & Resources
 
 ### Essential
-- Review Task 2 bundle for gaps
+- Review assessment bundle for gaps
 - [IDEO: The Art of Critique](https://www.ideo.com/blog/design-critique)
 
 ### Presentation Skills
@@ -680,4 +678,4 @@ Final session:
 
 ---
 
-**Lab complete!** You've presented your work with evidence, received constructive critique, and prepared for final submissions in Week 11 Lab 2.
+**Lab complete!** You've presented your work with evidence, received constructive critique, and prepared for assessment refinement in Week 11 Lab 2.

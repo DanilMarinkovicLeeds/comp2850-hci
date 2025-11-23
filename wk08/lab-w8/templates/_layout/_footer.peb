@@ -12,8 +12,12 @@
     <p>
       <small>
         Session: {{ sessionId | default('N/A') }} &bull;
-        Mode: {% if isHtmx %}HTMX{% else %}No-JS{% endif %}
+        Mode: <span id="mode-indicator">No-JS</span>
       </small>
     </p>
+    <script>
+      // Update mode indicator when JS is available
+      document.getElementById('mode-indicator').textContent = 'HTMX';
+    </script>
   </div>
 </footer>

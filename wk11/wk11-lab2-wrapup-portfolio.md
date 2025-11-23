@@ -16,7 +16,6 @@ Throughout COMP2850 we use **people-centred language** (e.g., "person using a sc
 ## Pre-reading
 
 **Essential**
-- [Carson, Markel, and Rezac-Andersen (2020). *Portfolio Pedagogy*](https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1109&context=clas_facpubs)
 - [GOV.UK Design System: Form validation](https://design-system.service.gov.uk/patterns/validation/)
 - [hypermedia.systems, Ch. 9: Practical Patterns](https://hypermedia.systems/hypermedia-on-the-web/#_practical_patterns)
 
@@ -54,16 +53,23 @@ Today you will **polish your work**, **assemble a portfolio** showing complete e
 
 **Academically**, reflective portfolios are a recognised pedagogy for consolidating learning (Carson et al., 2020). Research shows that students who explicitly connect theory (e.g., WCAG success criteria) to practice (e.g., code fixes) develop deeper understanding than those who treat labs as discrete tasks.
 
-### Learning Outcomes
+## Learning Focus
 
-By the end of this lab, you will be able to:
+### Lab Objectives
+By the end of this session, you will have:
+- Assembled a portfolio showing complete evidence chains (raw data → analysis → fix → verification)
+- Produced reflective writing linking theory (WCAG, privacy principles) to practice (code, metrics)
+- Reviewed all evidence chains across Tasks 1 & 2
+- Completed self-assessment against all 13 Learning Outcomes
+- Verified Gradescope submission readiness (file structure, size limits, naming conventions)
+- Integrated peer critique feedback into backlog
+- Finalised portfolio with reflections
 
-| Learning Outcome | Module LO | ACM/WCAG Ref |
-|---|---|---|
-| Assemble a portfolio showing complete evidence chains (raw data → analysis → fix → verification) | LO3: Apply HCI evaluation methods | ACM: HC/5 |
-| Produce reflective writing linking theory (WCAG, privacy principles) to practice (code, metrics) | LO2: Evaluate accessibility & ethics | ACM: SP/2 |
-| Verify Gradescope submission readiness (file structure, size limits, naming conventions) | LO3: Apply professional workflows | ACM: SP/1 |
-| Integrate peer critique feedback into backlog and prioritise for Semester 2 | LO4: Communicate design decisions | ACM: SP/3 |
+### Learning Outcomes Addressed
+This lab contributes to the following module Learning Outcomes ([full definitions](../references/learning-outcomes.md)):
+
+- **LO12**: Demonstrate professionalism — evidenced by complete, honest self-assessment
+- **All 13 LOs** — evidenced by portfolio demonstrating cumulative achievement across Weeks 6-11
 
 ---
 
@@ -111,8 +117,8 @@ A **portfolio** is an organised collection of artefacts (code, docs, evidence) w
 
 1. **Code repository** (GitLab/GitHub): All commits from Week 6–11
 2. **Evidence directory**: Organised by week (`evidence/wk6/`, `evidence/wk7/`, etc.)
-3. **Task 1 package** (Gradescope): Consent, pilot data, findings, backlog
-4. **Task 2 package** (Gradescope): Prioritisation, fix commits, verification, reflection
+3. **assessment package** (Gradescope): Consent, pilot data, findings, backlog
+4. **assessment package** (Gradescope): Prioritisation, fix commits, verification, reflection
 5. **README** or **reflection doc**: Narrative tying everything together
 
 **Portfolio quality indicators**:
@@ -141,23 +147,23 @@ A **portfolio** is an organised collection of artefacts (code, docs, evidence) w
 
 ---
 
-## Activity 1: Polish Task 1 Based on Critique Feedback
+## Activity 1: Polish assessment Based on Critique Feedback
 
 **Time**: 30 minutes
-**Materials**: Studio crit feedback (Lab 1), Task 1 draft package (Week 9)
+**Materials**: Studio crit feedback (Lab 1), assessment draft package (Week 9)
 
 ### Step 1: Review Critique Feedback
 
-Open your studio crit feedback notes. Look for **suggestions** that apply to **Task 1** (evaluation and instrumentation). Common themes:
+Open your studio crit feedback notes. Look for **suggestions** that apply to **assessment** (evaluation and instrumentation). Common themes:
 
 - **Pilot protocol clarity**: "I wasn't sure if consent was verbal or signed" → add screenshot of consent script
 - **Metrics interpretation**: "Median looks fine, but no discussion of MAD outliers" → add MAD analysis
 - **Evidence completeness**: "P3 notes mention 'struggled with SR' but no specifics" → add verbatim quotes, timestamps
 - **Backlog traceability**: "Backlog item #7 says 'fix validation' but doesn't cite pilot data" → add pilot ID and metric
 
-### Step 2: Update Task 1 Files
+### Step 2: Update assessment Files
 
-Your Task 1 package should include:
+Your assessment package should include:
 
 ```
 task1/
@@ -204,7 +210,7 @@ task1/
 2. **Check total size**:
    ```bash
    du -sh task1/
-   # Should be < 50 MB for Task 1 alone
+   # Should be < 50 MB for assessment alone
    ```
 
 3. **Verify PDF compilation**: Convert `reflection-task1.md` to PDF:
@@ -228,14 +234,14 @@ task1/
 
 ---
 
-## Activity 2: Assemble Task 2 Portfolio
+## Activity 2: Assemble assessment Portfolio
 
 **Time**: 40 minutes
-**Materials**: Task 2 draft (Week 10), regression checklist, verification pilot data, critique feedback
+**Materials**: assessment draft (Week 10), regression checklist, verification pilot data, critique feedback
 
-### Step 1: Review Task 2 Requirements
+### Step 1: Review assessment Requirements
 
-Task 2 focuses on **redesign** and **verification**. Your package must show:
+assessment focuses on **redesign** and **verification**. Your package must show:
 
 1. **Prioritisation rationale**: How you scored issues with (Impact + Inclusion) – Effort
 2. **Implementation evidence**: Commit hashes, before/after code diffs, WCAG mapping
@@ -243,7 +249,7 @@ Task 2 focuses on **redesign** and **verification**. Your package must show:
 4. **Verification pilots**: Re-ran same tasks with same assistive tech; metrics improved
 5. **Reflection**: What you learned about inclusive redesign
 
-### Step 2: Organise Task 2 Files
+### Step 2: Organise assessment Files
 
 ```
 task2/
@@ -369,7 +375,7 @@ Create `wcag-compliance.md` mapping all fixes to WCAG 2.2 AA criteria:
 **Reference**: [WCAG 2.2 Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
 ```
 
-### Step 6: Write Task 2 Reflection
+### Step 6: Write assessment Reflection
 
 Your `reflection-task2.md` should answer:
 
@@ -381,7 +387,7 @@ Your `reflection-task2.md` should answer:
 **Example structure** (aim for 800–1,000 words):
 
 ```markdown
-# Task 2 Reflection: Inclusive Redesign
+# assessment Reflection: Inclusive Redesign
 
 ## Overview
 After analysing pilot data from Week 9, I identified 8 accessibility and usability issues. Using the (Impact + Inclusion) – Effort prioritisation framework, I focused on the top 3 issues that disproportionately affected screen reader users and keyboard-only users...
@@ -454,10 +460,10 @@ git commit --amend -m "Add ARIA live region to error div (WCAG 4.1.3)"
 git rebase -i HEAD~5  # Interactive rebase for last 5 commits
 ```
 
-**Create `commits.md`** for Task 2 package:
+**Create `commits.md`** for assessment package:
 
 ```markdown
-# Commit Log: Task 2 Fixes
+# Commit Log: assessment Fixes
 
 | Commit | Date | Description | Files |
 |--------|------|-------------|-------|
@@ -593,7 +599,7 @@ This repository contains a **task manager web application** built with **Kotlin/
 ## Running the Application
 
 ```bash
-# Prerequisites: JDK 17+, Gradle 8+
+# Prerequisites: JDK 21+, Gradle 8+
 ./gradlew run
 
 # Application starts on http://localhost:8080/tasks
@@ -627,7 +633,7 @@ This repository contains a **task manager web application** built with **Kotlin/
 
 - **HTMX**: [hypermedia.systems](https://hypermedia.systems/) (Carson Gross, 2023)
 - **WCAG 2.2**: [W3C Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
-- **Privacy by Design**: [ICO Guide](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-re../../references/)
+- **Privacy by Design**: [ICO Guide](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/)
 - **Ktor**: [ktor.io](https://ktor.io/)
 - **Pebble Templates**: [pebbletemplates.io](https://pebbletemplates.io/)
 
@@ -656,7 +662,7 @@ This repository contains a **task manager web application** built with **Kotlin/
 ## Activity 4: Practice Gradescope Submission
 
 **Time**: 20 minutes
-**Materials**: Task 1 and Task 2 packages, Gradescope test environment (if available)
+**Materials**: assessment and assessment packages, Gradescope test environment (if available)
 
 ### Step 1: Check File Size Limits
 
@@ -694,12 +700,12 @@ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen \
 Gradescope typically requires a **single ZIP per task**. Create them:
 
 ```bash
-# Task 1
+# assessment
 cd task1/
 zip -r ../task1-submission.zip .
 cd ..
 
-# Task 2
+# assessment
 cd task2/
 zip -r ../task2-submission.zip .
 cd ..
@@ -744,7 +750,7 @@ If Gradescope has a **draft/test assignment**, upload your ZIPs there. Otherwise
 
 Print this checklist and tick off each item:
 
-**Task 1 (Evaluation)**
+**assessment (Evaluation)**
 - [ ] `consent-script.md` includes informed consent protocol
 - [ ] `pilot-protocol.md` includes step-by-step task execution guide
 - [ ] `metrics.csv` is anonymised (no real names, emails)
@@ -756,7 +762,7 @@ Print this checklist and tick off each item:
 - [ ] Total size < 50 MB
 - [ ] All commit hashes correct (`git log --oneline` to verify)
 
-**Task 2 (Redesign)**
+**assessment (Redesign)**
 - [ ] `prioritisation.md` includes scoring matrix with rationale
 - [ ] `fixes/` directory includes one file per priority issue (typically 3–5)
 - [ ] `commits.md` lists all fix commits with hashes and files changed
@@ -775,12 +781,12 @@ Print this checklist and tick off each item:
 
 ### Step 5: Backup Strategy
 
-Before final submission:
+Before assessment refinement:
 
 1. **Tag your repository**:
    ```bash
-   git tag -a v1.0-task1 -m "Task 1 submission (2025-01-15)"
-   git tag -a v1.0-task2 -m "Task 2 submission (2025-01-17)"
+   git tag -a v1.0-task1 -m "assessment submission (2025-01-15)"
+   git tag -a v1.0-task2 -m "assessment submission (2025-01-17)"
    git push origin --tags
    ```
 
@@ -807,18 +813,34 @@ Before final submission:
 **Time**: 20 minutes
 **Materials**: Lab notes from Weeks 6–11, backlog, peer feedback
 
-### Step 1: Review Learning Outcomes
+### Step 1: Self-Assessment — Learning Outcomes
 
-Return to the module learning outcomes (from Week 6 introduction) and rate your confidence (1–5):
+Review your evidence against all **13 HCI Learning Outcomes** you've addressed across Weeks 6-11. Rate your confidence (1 = not confident, 5 = very confident) and note where the evidence lives.
 
-| Learning Outcome | Confidence (1–5) | Evidence |
-|---|---|---|
-| LO1: Apply HCI principles to design inclusive interfaces | ☐☐☐☐☐ | Week 7 audit, Week 10 redesign |
-| LO2: Evaluate accessibility and ethics in interactive systems | ☐☐☐☐☐ | Week 9 pilots, WCAG mapping |
-| LO3: Implement server-first architecture with progressive enhancement | ☐☐☐☐☐ | Week 6–8 HTMX features, no-JS parity |
-| LO4: Communicate design decisions with evidence | ☐☐☐☐☐ | Week 11 crit, Task 1 & 2 reflections |
+See [Learning Outcomes Reference](../references/learning-outcomes.md) for full LO definitions.
 
-**Reflection prompt**: For any outcome rated < 4, what would help you improve? (More practice, more reading, more feedback?)
+| LO | Outcome | Confidence (1–5) | Evidence Location |
+|----|---------|------------------|-------------------|
+| **LO1** | Differentiate people-centred methods | ☐☐☐☐☐ | W6 L2 job stories, W9 L1 eval plan |
+| **LO2** | Design and conduct needs-finding | ☐☐☐☐☐ | W6 L2 consent protocol |
+| **LO3** | Analyse ethical implications | ☐☐☐☐☐ | W7 L1 consent modal, privacy audit |
+| **LO4** | Evaluate for accessibility | ☐☐☐☐☐ | W7 L2 axe audit, WCAG map |
+| **LO5** | Create prototypes | ☐☐☐☐☐ | W8 L1 HTMX features |
+| **LO6** | Apply iterative design | ☐☐☐☐☐ | W9 L2 pilots → W10 L2 redesign |
+| **LO7** | Analyse design constraints | ☐☐☐☐☐ | W8 L2 no-JS trade-offs doc |
+| **LO8** | Design and execute evaluation | ☐☐☐☐☐ | W9 L1 metrics + W9 L2 pilots |
+| **LO9** | Apply inclusive design | ☐☐☐☐☐ | W7 L2 fix, W10 L2 redesign |
+| **LO10** | Critique societal impacts | ☐☐☐☐☐ | W7 L1 ethics reflection |
+| **LO11** | Collaborate in teams | ☐☐☐☐☐ | W9 L2 peer pilots, W11 L1 crit |
+| **LO12** | Demonstrate professionalism | ☐☐☐☐☐ | All labs: consent, citations |
+| **LO13** | Integrate HCI with SE | ☐☐☐☐☐ | W8 L1 Ktor patterns, W9 L1 instrumentation |
+
+**Confidence scale**: 1 = Not confident, 3 = Moderately confident, 5 = Very confident
+
+**Reflection prompt**:
+1. For each LO, locate your evidence (code, docs, reflections)
+2. Note any gaps — do you have weak evidence for any LO?
+3. For any outcome rated < 4, what would help you improve? (More practice, more reading, more feedback?)
 
 ### Step 2: Identify Key Insights
 
@@ -829,7 +851,7 @@ Write **3–5 bullet points** summarising what you learned:
 - **Evidence changes everything**: Before Week 9 pilots, I thought my task manager was "fine". Metrics revealed a 10.9 MAD outlier for SR users, forcing me to confront assumptions. Quantitative + qualitative data is essential for inclusive design.
 - **Prioritisation is a skill**: I wanted to fix all 8 issues, but (Impact + Inclusion) – Effort scoring helped me focus on the 3 that mattered most. This taught me that good design isn't about perfection—it's about impact per unit of effort.
 - **Accessibility is iterative**: My first fix (adding `role="alert"`) didn't work because I forgot `aria-live`. After reading WCAG 4.1.3 and testing with NVDA, I corrected it. This trial-and-error process is normal and valuable.
-- **Reflection cements learning**: Writing 1,500 words about my redesign forced me to connect theory (WCAG) to practice (code) in a way that coding alone didn't. Carson et al. (2020) were right: portfolios deepen understanding.
+- **Reflection cements learning**: Writing 1,500 words about my redesign forced me to connect theory (WCAG) to practice (code) in a way that coding alone didn't. Research shows that portfolios deepen understanding.
 
 ### Step 3: Update Backlog for Semester 2
 
@@ -844,7 +866,7 @@ Your product backlog should include:
 | ID | Description | Priority | Effort | Notes |
 |----|-------------|----------|--------|-------|
 | #8 | Add keyboard shortcut hints (e.g., "Press / to focus search") | P2 | 3 | Feedback from peer review; improves discoverability |
-| #9 | Implement undo for task deletion | P2 | 4 | Not in scope for Task 2, but valuable for real users |
+| #9 | Implement undo for task deletion | P2 | 4 | Not in scope for assessment, but valuable for real users |
 | #10 | Add dark mode toggle (WCAG 1.4.3 compliance) | P3 | 5 | Low priority; contrast already meets AA |
 | #11 | Explore HTMX websockets for real-time collaboration | P4 | 8 | Stretch goal; requires learning new HTMX feature |
 | #12 | Add automated a11y tests (axe-core in CI/CD pipeline) | P1 | 6 | High priority; prevents regressions in future work |
@@ -913,7 +935,7 @@ The following features represent typical Semester 2 enhancements. Your backlog (
 | **6. AI Task Suggestions** | LLM generates task breakdowns (e.g., "Write essay" → sub-tasks) | AI transparency, user agency | OpenAI API integration, prompt engineering | WCAG 3.3.2 (Labels or Instructions) for AI disclaimers |
 | **7. Offline Mode (PWA)** | Service worker caches app; tasks sync when online | Network resilience, progressive web apps | Service Worker API, IndexedDB, background sync | WCAG 3.2.4 (Consistent Identification) across online/offline |
 | **8. Accessibility Dashboard** | Real-time WCAG compliance score; lighthouse metrics | Automated testing limits, developer tools | axe-core integration, CI/CD pipeline | Meta-accessibility: ensuring dashboard itself is accessible |
-| **9. Dark Mode** | User-selectable theme (light/dark/high-contrast) | Personalisation, sensory preferences | CSS custom properties, `prefers-color-scheme` media query | WCAG 1.4.3 (Contrast - Minimum) across all themes |
+| **9. Dark Mode** | User-selectable theme (light/dark/high-contrast) | Personalisation, sensory preferences | CSS custom properties, `prefers-colour-scheme` media query | WCAG 1.4.3 (Contrast - Minimum) across all themes |
 | **10. Export & Import** | Download tasks as JSON/CSV/PDF; import from Todoist/Trello | Data portability, interoperability | CSV/JSON serialisation, PDF generation (iText/PDFKit) | WCAG 1.1.1 (ensure exported PDFs are tagged/accessible) |
 
 **Prioritisation guidance**: If your Semester 1 evaluation identified **performance issues** (e.g., slow search), prioritise pagination + search (features 1, 3). If you're interested in **AI/ethics**, prioritise feature 6 + transparency documentation. If you want to explore **real-time collaboration**, prioritise features 4–5.
@@ -932,7 +954,7 @@ Semester 2 typically covers these advanced HCI topics. Your portfolio work will 
 2. **AI & Automation Ethics**
    - **What**: Transparency, explainability, user agency when integrating AI features
    - **Application**: Feature 6 (AI task suggestions) with clear disclaimers ("AI-generated; verify before relying on")
-   - **Reading**: Shneiderman (2020) "Human-Centered AI"; EU AI Act principles
+   - **Reading**: Shneiderman (2022) "Human-Centered AI"; EU AI Act principles
 
 3. **Performance & Perceived Responsiveness**
    - **What**: Optimising server response time, perceptual speed tricks (skeleton screens, optimistic UI)
@@ -1145,7 +1167,7 @@ Semester 2 is where you **master** these principles by applying them to harder p
 |------|------------|-----------------|
 | **Evidence chain** | Traceable path from raw data → analysis → fix → verification | P3 pilot notes → WCAG violation → code commit → retest |
 | **Reflective writing** | Connecting theory to practice by answering What/Why/How/Learning | "I added role=alert (WCAG 4.1.3) because P3 didn't hear errors" |
-| **Portfolio** | Organised collection of artefacts with accompanying reflection | Code repo + evidence/ + Task 1/2 packages + README |
+| **Portfolio** | Organised collection of artefacts with accompanying reflection | Code repo + evidence/ + assessment/2 packages + README |
 | **Traceability** | Ability to link every claim to supporting evidence | "P3 took 127 s (see metrics.csv row 47)" |
 | **Gradescope** | Submission platform with file size/format requirements | 100 MB limit, PDF preferred, flat directory structure |
 | **Commit hash** | Unique identifier for a Git commit | `c8d1e4f` (first 7 chars of SHA-1) |
@@ -1160,7 +1182,7 @@ Semester 2 is where you **master** these principles by applying them to harder p
 
 1. **Evidence chains**: Choose one finding from your Week 9 analysis. Trace the complete evidence chain from raw data (pilot ID, task, metric) to fix (commit hash) to verification (retest result). Is any link in the chain missing or weak?
 
-2. **Reflective writing quality**: Reread your Task 1 and Task 2 reflections. For each, identify:
+2. **Reflective writing quality**: Reread your assessment and assessment reflections. For each, identify:
    - One place where you cited theory (WCAG, privacy principle, academic source)
    - One place where you described a mistake and correction
    - One place where you connected learning to future practice
@@ -1176,7 +1198,6 @@ Semester 2 is where you **master** these principles by applying them to harder p
 ## Further Reading
 
 **Reflective practice**
-- Carson, B., Markel, J. M., & Rezac-Andersen, C. (2020). *Portfolio Pedagogy: Fostering Student Reflection*. Purdue University Press. <https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1109&context=clas_facpubs>
 - Moon, J. A. (2004). *A Handbook of Reflective and Experiential Learning: Theory and Practice*. Routledge.
 
 **Evidence-based design**
@@ -1190,7 +1211,7 @@ Semester 2 is where you **master** these principles by applying them to harder p
 - GOV.UK (2024). *Making Your Service Accessible*. <https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction>
 
 **Server-first architecture**
-- Gross, C., Haddad, D., & Weibel, A. (2023). *Hypermedia Systems*. <https://hypermedia.systems/> (Ch. 9: Practical Patterns; Ch. 11: Websockets)
+- Gross, C., Stepinski, A., & Akşimşek, D. (2023). *Hypermedia Systems*. <https://hypermedia.systems/> (Ch. 9: Practical Patterns; Ch. 11: Websockets)
 
 ---
 
@@ -1198,8 +1219,8 @@ Semester 2 is where you **master** these principles by applying them to harder p
 
 Before leaving lab, confirm:
 
-- [ ] **Task 1 polished**: Critique feedback incorporated; evidence complete; reflection compiled to PDF
-- [ ] **Task 2 assembled**: Fix docs written; regression checklist completed; verification data organised; reflection compiled to PDF
+- [ ] **assessment polished**: Critique feedback incorporated; evidence complete; reflection compiled to PDF
+- [ ] **assessment assembled**: Fix docs written; regression checklist completed; verification data organised; reflection compiled to PDF
 - [ ] **Repository tidy**: Commit history clean; `README.md` updated; `evidence/` organised by week
 - [ ] **Submission ready**: `task1-submission.zip` and `task2-submission.zip` created; file sizes < 50 MB each; PDFs legible
 - [ ] **Backlog updated**: Peer feedback + Semester 2 goals added; priorities assigned
@@ -1221,7 +1242,6 @@ Before leaving lab, confirm:
 ## Acknowledgements
 
 This lab draws on:
-- **Carson, Markel, and Rezac-Andersen (2020)** for portfolio pedagogy
 - **GOV.UK Design System** for accessible error handling patterns
 - **hypermedia.systems (Gross et al., 2023)** for server-first architecture guidance
 - **WCAG 2.2** for accessibility compliance mapping

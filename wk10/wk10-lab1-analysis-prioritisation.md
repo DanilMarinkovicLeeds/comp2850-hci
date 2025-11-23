@@ -1,35 +1,24 @@
 # Week 10 • Lab 1 — Analyse Metrics, Prioritise Fixes, Plan Inclusive Redesign
 
-<div class="badges">
-  <span class="badge lo">LO1</span>
-  <span class="badge lo">LO3</span>
-  <span class="badge lo">LO4</span>
-  <span class="badge lo">LO5</span>
-  <span class="badge lo">LO6</span>
-  <span class="badge lo">LO7</span>
-  <span class="badge lo">LO8</span>
-  <span class="badge lo">LO9</span>
-  <span class="badge lo">LO13</span>
-  <span class="badge acm">HCI-Design</span>
-  <span class="badge acm">HCI-Evaluation</span>
-  <span class="badge acm">A&I</span>
-  <span class="badge wcag">WCAG 2.2 AA</span>
-</div>
+![COMP2850](https://img.shields.io/badge/COMP2850-HCI-blue)
+![Week 10](https://img.shields.io/badge/Week-10-orange)
+![Lab 1](https://img.shields.io/badge/Lab-1-green)
+![Status](https://img.shields.io/badge/Status-Draft-yellow)
 
-> **Terminology Note**: Avoid "user." Prefer **person**, **participant**, **peer**, **pilot**.
+
 
 ---
 
 ## Before Lab: Required Reading (15 mins)
 
 📖 **Essential**:
-- Review `../../references/evaluation-metrics-quickref.md` (formulas for median, MAD, error rates)
-- Review Week 9 Lab 2 findings (`wk09/lab-wk9/submission/task1-draft/05-findings.md`)
-- [Nielsen: Prioritizing Web Usability Issues](https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/)
+- Review [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md) (formulas for median, MAD, error rates)
+- Review Week 9 Lab 2 findings (`wk09/assessment/05-findings.md`)
+- [Nielsen: Prioritising Web Usability Issues](https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/)
 
 📖 **Contextual**:
 - [GOV.UK: Using data to improve your service](https://www.gov.uk/service-manual/measuring-success/using-data-to-improve-your-service)
-- [W3C: Prioritizing Accessibility Issues](https://www.w3.org/WAI/test-evaluate/report/)
+- [W3C: Prioritising Accessibility Issues](https://www.w3.org/WAI/test-evaluate/report/)
 
 ---
 
@@ -39,11 +28,11 @@ Week 9 collected raw pilot data: logs, times, errors, quotes. **Today you turn t
 
 **Data analysis is NOT just number-crunching**. It's:
 - **Interpretation**: What do the numbers *mean* for real people?
-- **Prioritization**: Which issues matter most for inclusion + usability?
+- **Prioritisation**: Which issues matter most for inclusion + usability?
 - **Planning**: What specific changes will fix the highest-impact problems?
 
 **Why this matters**:
-- **Gradescope Task 2**: Requires before/after metrics + evidence of data-driven redesign
+- **assessment**: Requires before/after metrics + evidence of data-driven redesign
 - **Week 10 Lab 2**: You'll implement Priority 1 fixes—planning today prevents thrashing tomorrow
 - **Professional practice**: Product decisions require justification (stakeholders ask "why this fix?")
 
@@ -51,16 +40,22 @@ Week 9 collected raw pilot data: logs, times, errors, quotes. **Today you turn t
 
 ---
 
-## Learning Outcomes
+## Learning Focus
 
-By end of lab:
-1. **Calculate** summary statistics (median, MAD, completion rate, error rate) per task (LO4, LO6)
-2. **Interpret** metrics to identify inclusion impacts (SR users, keyboard-only, no-JS) (LO3, LO8)
-3. **Prioritise** backlog items using impact × inclusion ÷ effort framework (LO1, LO5)
-4. **Draft** inclusive redesign brief tying data to planned changes (LO7, LO9, LO13)
+### Lab Objectives
+By the end of this session, you will have:
+- Calculated summary statistics (median, MAD, completion rate, error rate) per task
+- Analysed pilot data (quantitative + qualitative)
+- Interpreted metrics to identify inclusion impacts (SR users, keyboard-only, no-JS)
+- Prioritised issues using (Impact + Inclusion) – Effort matrix
+- Created redesign brief with evidence chains
 
-Maps to ACM: HCI-Design (data-driven design decisions), HCI-Evaluation (quantitative analysis), A&I (inclusive prioritization)
-Maps to WCAG: 2.2 AA (fixes must address accessibility barriers)
+### Learning Outcomes Addressed
+This lab contributes to the following module Learning Outcomes ([full definitions](../references/learning-outcomes.md)):
+
+- **LO6**: Apply iterative design — evidenced by data-driven prioritisation
+- **LO8**: Design and execute evaluation — evidenced by metric analysis
+- **LO9**: Apply inclusive design — evidenced by inclusion weighting in prioritisation
 
 ---
 
@@ -177,9 +172,9 @@ Maps to WCAG: 2.2 AA (fixes must address accessibility barriers)
 >
 > 🔗 [WCAG 3.3: Input Assistance](https://www.w3.org/WAI/WCAG22/Understanding/input-assistance)
 
-### Prioritization Framework
+### Prioritisation Framework
 
-> **Prioritization Framework** [GLOSSARY]
+> **Prioritisation Framework** [GLOSSARY]
 >
 > Systematic method to rank backlog items by urgency/importance.
 >
@@ -214,9 +209,9 @@ Maps to WCAG: 2.2 AA (fixes must address accessibility barriers)
 > - Effort: 2 (add `role=alert`, update template)
 > - **Score**: (5+5)-2 = **8** → **Priority 1**
 >
-> **HCI Connection**: Prioritization makes **inclusion explicit**—not just "fix the bugs" but "fix barriers first."
+> **HCI Connection**: Prioritisation makes **inclusion explicit**—not just "fix the bugs" but "fix barriers first."
 >
-> 🔗 [W3C: Prioritizing Accessibility Issues](https://www.w3.org/WAI/test-evaluate/report/#prioritize)
+> 🔗 [W3C: Prioritising Accessibility Issues](https://www.w3.org/WAI/test-evaluate/report/#prioritise)
 
 ### Evidence Chain (Revisited)
 
@@ -229,13 +224,13 @@ Maps to WCAG: 2.2 AA (fixes must address accessibility barriers)
 > 2. **Analysis**: `analysis/analysis.csv` confirms: median 2300ms, MAD 450ms, error rate 0.5
 > 3. **Interpretation**: No-JS path lacks accessible error feedback (pilot notes confirm)
 > 4. **Finding**: "No-JS edit has 50% completion due to non-focusable error summary"
-> 5. **Prioritization**: Impact=5, Inclusion=5, Effort=2 → Score=8 (Priority 1)
+> 5. **Prioritisation**: Impact=5, Inclusion=5, Effort=2 → Score=8 (Priority 1)
 > 6. **Fix plan**: Add `tabindex="-1"` to error summary, auto-focus on page load
 > 7. **Verification** (Week 10 Lab 2): Retest with no-JS, measure completion rate ≥0.9
 >
-> **Gradescope Task 2 requires**:
+> **assessment requires**:
 > - Before metrics (Week 9)
-> - Analysis + prioritization (Week 10 Lab 1)
+> - Analysis + prioritisation (Week 10 Lab 1)
 > - After metrics (Week 10 Lab 2)
 > - Evidence chain documented throughout
 >
@@ -252,7 +247,7 @@ Maps to WCAG: 2.2 AA (fixes must address accessibility barriers)
 ```bash
 mkdir -p analysis
 mkdir -p wk10/lab-wk10/docs
-mkdir -p wk10/gradescope/task2
+mkdir -p wk10/assessment
 ```
 
 ### Step 2: Verify raw data (3 min)
@@ -496,7 +491,7 @@ all_stats['js_mode'] = 'all'
 **Expected impact**: Completion rate ≥90% for all variants, error rate <10% (with improved affordances).
 ```
 
-**Repeat for all 4 tasks**, prioritizing those with issues.
+**Repeat for all 4 tasks**, prioritising those with issues.
 
 ✋ **Stop and check**:
 - [ ] Metrics tables complete and formatted
@@ -536,19 +531,19 @@ id,title,task_code,problem,impact,inclusion,effort,score,evidence,proposed_fix,c
 > | **No-JS error summary not focusable** | **5** | **5** | 2 | **8** | Impact=5 (all no-JS users affected), Inclusion=5 (keyboard/no-mouse users can't navigate), Effort=2 (add `tabindex=-1`), Score=(5+5)-2=8 |
 > | **Filter result count not announced** | **3** | **4** | 1 | **6** | Impact=3 (minor: doesn't block task, but confusing), Inclusion=4 (SR users miss feedback), Effort=1 (move text to live region), Score=(3+4)-1=6 |
 > | **Auto-search confuses some** | **3** | **2** | 2 | **3** | Impact=3 (affects 2/5 pilots, minor confusion), Inclusion=2 (not equity-specific), Effort=2 (add button + help text), Score=(3+2)-2=3 |
-> | **No-JS delete lacks confirmation** | **2** | **2** | 4 | **0** | Impact=2 (rare: only no-JS + delete use case), Inclusion=2 (low risk, recoverable), Effort=4 (new route + page + tests), Score=(2+2)-4=0 → **Deprioritize** |
+> | **No-JS delete lacks confirmation** | **2** | **2** | 4 | **0** | Impact=2 (rare: only no-JS + delete use case), Inclusion=2 (low risk, recoverable), Effort=4 (new route + page + tests), Score=(2+2)-4=0 → **Deprioritise** |
 >
 > **Key distinctions**:
 > - **Impact vs Inclusion**: Impact = "how many people?" / Inclusion = "who is disproportionately affected?"
 >   - Example 1: High impact (5) + high inclusion (5) = SR validation errors block **everyone** using SR
 >   - Example 4: Medium impact (3) + low inclusion (2) = auto-search confusion is **general usability** issue, not equity-specific
 > - **When Effort > Benefit**: Example 5 scores 0 (even though impact+inclusion=4) because effort=4 makes ROI negative
-> - **Tie-breaking**: Examples 1 & 2 both score 8 → prioritize together if they relate to same task (T2_edit)
+> - **Tie-breaking**: Examples 1 & 2 both score 8 → prioritise together if they relate to same task (T2_edit)
 >
 > **Decision-making**:
 > - **Priority 1** (fix in Lab 2): Score ≥8 + WCAG violation + feasible in 2 hours
 > - **Priority 2** (semester 2 backlog): Score 5-7
-> - **Deprioritize**: Score <5 or effort outweighs benefit
+> - **Deprioritise**: Score <5 or effort outweighs benefit
 
 **Example entries**:
 
@@ -857,7 +852,7 @@ wk9-01,...,fixed,"wk10/lab-wk10/research/verification-notes.md; wk10/lab-wk10/ev
 4. Zero WCAG 3.3.1 / 4.1.3 violations
 5. Evidence captured (screenshots, SR transcripts, metrics)
 6. Backlog updated (wk9-01, wk9-03 marked fixed)
-7. Task 2 evidence pack updated with before/after data
+7. assessment evidence pack updated with before/after data
 
 **If not met**: Document blockers, revert changes, choose lower-priority fix.
 ```
@@ -907,9 +902,9 @@ EOF
 
 1. **Data interpretation**: What surprised you most in the numbers? Were any findings unexpected based on Week 9 observations?
 
-2. **Inclusion lens**: How did the prioritization framework change which issues you focused on? Would you have chosen differently without the Inclusion dimension?
+2. **Inclusion lens**: How did the prioritisation framework change which issues you focused on? Would you have chosen differently without the Inclusion dimension?
 
-3. **Trade-offs**: Which issues did you deprioritize and why? How comfortable are you with those decisions?
+3. **Trade-offs**: Which issues did you deprioritise and why? How comfortable are you with those decisions?
 
 4. **Redesign confidence**: How confident are you that the proposed fix will achieve ≥90% completion? What uncertainties remain?
 
@@ -926,7 +921,7 @@ Next session:
 - **Verify** with 3 participants (SR, keyboard, no-JS)
 - **Measure** completion rate, error rate, qualitative observations
 - **Update** backlog with verification evidence
-- **Prepare** Task 2 draft pack (before/after metrics, code diffs, evidence)
+- **Prepare** assessment draft pack (before/after metrics, code diffs, evidence)
 
 **Before Lab 2**:
 - Review redesign brief (`wk10/lab-wk10/docs/redesign-brief.md`)
@@ -939,16 +934,16 @@ Next session:
 ## Further Reading & Resources
 
 ### Essential
-- Review `../../references/evaluation-metrics-quickref.md` (formulas reference)
+- Review [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md) (formulas reference)
 - [GOV.UK: Using data to improve your service](https://www.gov.uk/service-manual/measuring-success/using-data-to-improve-your-service)
 
 ### Statistical Analysis
 - [Measuring UX](https://measuringux.com/) — Quantitative UX metrics handbook
 - [Statistics for HCI](https://hci-stats.com/) — Practical guide for small-sample HCI studies
 
-### Prioritization
-- [Nielsen: Prioritizing Web Usability Problems](https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/)
-- [W3C: Prioritizing Accessibility Issues](https://www.w3.org/WAI/test-evaluate/report/#prioritize)
+### Prioritisation
+- [Nielsen: Prioritising Web Usability Problems](https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/)
+- [W3C: Prioritising Accessibility Issues](https://www.w3.org/WAI/test-evaluate/report/#prioritise)
 - [GOV.UK: Prioritising user research findings](https://www.gov.uk/service-manual/user-research/analyse-a-research-session#prioritise-findings)
 
 ### Inclusive Design
@@ -970,7 +965,7 @@ Next session:
 | **MAD (Median Absolute Deviation)** | Robust measure of variability; median of |value - median| |
 | **Completion rate** | Proportion of task attempts that succeeded (effectiveness measure) |
 | **Error rate** | Proportion of attempts that triggered validation errors |
-| **Prioritization framework** | Systematic method to rank backlog items by (Impact+Inclusion)-Effort |
+| **Prioritisation framework** | Systematic method to rank backlog items by (Impact+Inclusion)-Effort |
 | **Evidence chain** | Traceability from raw data → analysis → finding → fix → verification |
 | **Impact** | How many people affected and how severely (1-5 scale) |
 | **Inclusion** | Does issue disproportionately affect disabled people? (1-5 scale) |
@@ -978,4 +973,4 @@ Next session:
 
 ---
 
-**Lab complete!** You have data-driven insights, prioritized backlog, and a detailed redesign plan. Week 10 Lab 2 will implement and verify the fixes.
+**Lab complete!** You have data-driven insights, prioritised backlog, and a detailed redesign plan. Week 10 Lab 2 will implement and verify the fixes.
