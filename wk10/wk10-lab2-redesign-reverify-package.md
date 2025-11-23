@@ -1,31 +1,20 @@
 # Week 10 • Lab 2 — Inclusive Redesign, Re-Verification, Task 2 Packaging
 
-<div class="badges">
-  <span class="badge lo">LO1</span>
-  <span class="badge lo">LO3</span>
-  <span class="badge lo">LO4</span>
-  <span class="badge lo">LO5</span>
-  <span class="badge lo">LO6</span>
-  <span class="badge lo">LO7</span>
-  <span class="badge lo">LO8</span>
-  <span class="badge lo">LO9</span>
-  <span class="badge lo">LO10</span>
-  <span class="badge lo">LO13</span>
-  <span class="badge acm">HCI-Design</span>
-  <span class="badge acm">HCI-Evaluation</span>
-  <span class="badge acm">A&I</span>
-  <span class="badge wcag">WCAG 2.2 AA</span>
-</div>
+![COMP2850](https://img.shields.io/badge/COMP2850-HCI-blue)
+![Week 10](https://img.shields.io/badge/Week-10-orange)
+![Lab 2](https://img.shields.io/badge/Lab-2-green)
+![Status](https://img.shields.io/badge/Status-Draft-yellow)
 
-> **Terminology Note**: Avoid "user." Prefer **person**, **participant**, **peer**, **pilot**.
+
 
 ---
 
 ## Before Lab: Required Reading (10 mins)
 
-📖 **Essential**:
+📖 **Essential**
 - Review your redesign brief (`wk10/lab-wk10/docs/redesign-brief.md`)
-- Review `../../references/assistive-testing-checklist.md`
+- Review [Assistive Testing Checklist](../references/assistive-testing-checklist.md)
+- Skim the [Screenshot Evidence Guide](../references/screenshot-guide.md)
 - [WCAG 2.2 Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/) (sections 3.3, 4.1)
 
 📖 **Contextual**:
@@ -42,27 +31,35 @@ Week 10 Lab 1 identified Priority 1 fixes through data analysis. **Today you imp
 - **Implementation**: Server-first code + HTMX enhancements
 - **Verification**: Rigorous accessibility testing (keyboard, SR, no-JS)
 - **Measurement**: Before/after metrics proving improvement
-- **Documentation**: Evidence chains for Gradescope Task 2
+- **Documentation**: Evidence chains for assessment
 
 **Why this matters**:
-- **Gradescope Task 2**: Requires before/after metrics + code changes + verification evidence
-- **Week 11 portfolio**: This fix becomes a case study (problem → data → fix → verification)
+- **assessment**: Requires before/after metrics + code changes + verification evidence
+- **assessment portfolio (due end Week 10)**: This fix becomes a case study (problem → data → fix → verification)
 - **Professional practice**: Inclusive design is iterative—implement, test, measure, refine
 
 **Quality bar**: Changes must improve accessibility **without breaking existing functionality**. Regression testing is critical.
 
 ---
 
-## Learning Outcomes
+## Learning Focus
 
-By end of lab:
-1. **Implement** Priority 1 fix from redesign brief (server + template changes) (LO5, LO6, LO10)
-2. **Verify** accessibility with regression checklist (keyboard, SR, no-JS) (LO7, LO9)
-3. **Measure** post-change metrics and compare to baseline (LO4, LO8)
-4. **Document** evidence chains (code diffs, screenshots, metrics) (LO3, LO13)
-5. **Package** Task 2 submission with before/after data (LO1, LO13)
+### Lab Objectives
+By the end of this session, you will have:
+- Implemented top 3 prioritised fixes (WCAG 2.2 AA)
+- Run regression testing (axe + manual keyboard, SR, no-JS)
+- Re-piloted with n=2 to verify improvements
+- Measured post-change metrics and compared to baseline
+- Documented evidence chains (code diffs, screenshots, metrics)
+- Packaged assessment submission with before/after data
 
-Maps to ACM: HCI-Design (implementation), HCI-Evaluation (verification), A&I (inclusive fixes)
+### Learning Outcomes Addressed
+This lab contributes to the following module Learning Outcomes ([full definitions](../references/learning-outcomes.md)):
+
+- **LO4**: Evaluate for accessibility — evidenced by regression testing
+- **LO6**: Apply iterative design — evidenced by redesign → re-verification cycle
+- **LO9**: Apply inclusive design — evidenced by WCAG-compliant redesign
+- **LO12**: Demonstrate professionalism — evidenced by evidence chains in documentation
 Maps to WCAG: 2.2 AA (demonstrable compliance)
 
 ---
@@ -107,7 +104,7 @@ Maps to WCAG: 2.2 AA (demonstrable compliance)
 >
 > **HCI connection**: Before/after metrics demonstrate **measurable impact**—not just "we fixed it" but "completion improved by 50%."
 >
-> **Gradescope Task 2 requires**: Table + narrative explaining significance (who benefits, why it matters).
+> **assessment requires**: Table + narrative explaining significance (who benefits, why it matters).
 >
 > 🔗 [Measuring UX: Before/After Studies](https://measuringux.com/before-after/)
 
@@ -156,7 +153,7 @@ Maps to WCAG: 2.2 AA (demonstrable compliance)
 
 > **Code Diffs** [GLOSSARY]
 >
-> Side-by-side comparison showing what changed. Essential for Task 2 evidence.
+> Side-by-side comparison showing what changed. Essential for assessment evidence.
 >
 > **Format**:
 > ```diff
@@ -173,7 +170,7 @@ Maps to WCAG: 2.2 AA (demonstrable compliance)
 >
 > **Generate automatically**:
 > ```bash
-> git diff wk9-baseline..HEAD -- templates/ > wk10/gradescope/task2/04-key-diffs.md
+> git diff wk9-baseline..HEAD -- templates/ > wk10/assessment/04-key-diffs.md
 > ```
 >
 > **HCI connection**: Diffs make fixes **transparent and reproducible**—assessors and peers can see exactly what changed.
@@ -188,7 +185,7 @@ Maps to WCAG: 2.2 AA (demonstrable compliance)
 
 ### Step 1: Review redesign brief (5 min)
 
-**Open `wk10/lab-wk10/docs/redesign-brief.md`** and confirm:
+Open `wk10/lab-wk10/docs/redesign-brief.md` and confirm:
 - [ ] Problem statement clear (backed by Week 9 data)
 - [ ] Proposed changes specific (file paths, before/after code)
 - [ ] Acceptance criteria measurable
@@ -381,7 +378,7 @@ No-JS,PRG pattern working (refresh doesn't duplicate),,
 No-JS,Full page renders vs fragments (correct responses),,
 Visual,Contrast meets WCAG AA (4.5:1 text),,
 Visual,200% zoom: no horizontal scroll,,
-Visual,Error messages visible (not color-only),,
+Visual,Error messages visible (not colour-only),,
 Visual,Focus indicators meet contrast requirements,,
 ```
 
@@ -414,7 +411,7 @@ Visual,Focus indicators meet contrast requirements,,
 **Visual testing**:
 - [ ] Use contrast checker (DevTools → CSS Overview or extension)
 - [ ] Zoom to 200% (Ctrl/Cmd + plus) → no horizontal scroll
-- [ ] Error states visible without color (text, icons, position)
+- [ ] Error states visible without colour (text, icons, position)
 
 ### Step 3: Document results (3 min)
 
@@ -487,7 +484,7 @@ P7_post (NVDA, keyboard-only):
 - Notes: "Error was clear this time, heard it immediately"
 ```
 
-### Step 3: Analyze post-change data (5 min)
+### Step 3: Analyse post-change data (5 min)
 
 **Open `data/metrics.csv`**, filter for session IDs `P6_post`, `P7_post`, `P8_post`.
 
@@ -539,11 +536,11 @@ P7_post (NVDA, keyboard-only):
 
 ---
 
-## Activity D: Package Task 2 Evidence Bundle (20 min)
+## Activity D: Package assessment Evidence Bundle (20 min)
 
 **Goal**: Assemble all artefacts for Gradescope submission.
 
-**Directory structure**: `wk10/gradescope/task2/`
+**Directory structure**: `wk10/assessment/`
 
 ### Step 1: Copy/create core documents (10 min)
 
@@ -590,7 +587,7 @@ Fix restored functional parity for no-JS users (0% → 100% completion) and impr
 
 Generate code diffs:
 ```bash
-git diff wk9-baseline..HEAD -- templates/tasks/index.peb src/main/kotlin/routes/Tasks.kt > wk10/gradescope/task2/04-key-diffs.md
+git diff wk9-baseline..HEAD -- templates/tasks/index.peb src/main/kotlin/routes/Tasks.kt > wk10/assessment/04-key-diffs.md
 ```
 
 Annotate with explanations:
@@ -658,7 +655,7 @@ val status = """<div id="status" role="alert" aria-live="assertive" hx-swap-oob=
 **Create `05-evidence/` directory**:
 
 ```
-wk10/gradescope/task2/05-evidence/
+wk10/assessment/05-evidence/
 ├── screenshots/
 │   ├── before-htmx-error.png (no role=alert visible in devtools)
 │   ├── after-htmx-error.png (role=alert visible)
@@ -695,10 +692,10 @@ wk10/gradescope/task2/05-evidence/
 
 ### Step 3: Create README (5 min)
 
-**Create `wk10/gradescope/task2/README.md`**:
+**Create `wk10/assessment/README.md`**:
 
 ```markdown
-# COMP2850 HCI — Gradescope Task 2 Submission
+# COMP2850 HCI — assessment Submission
 
 **Student**: [Your name]
 **Date**: 2025-10-22
@@ -732,7 +729,7 @@ wk10/gradescope/task2/05-evidence/
 
 1. **Raw data**: `05-evidence/metrics/before-analysis.csv` (Week 9 pilots)
 2. **Analysis**: `03-before-after-summary.md` (completion 67% → 100%)
-3. **Prioritization**: `01-redesign-brief.md` (Priority 1, Score 8)
+3. **Prioritisation**: `01-redesign-brief.md` (Priority 1, Score 8)
 4. **Implementation**: `04-key-diffs.md` (code changes with WCAG rationale)
 5. **Verification**: `02-regression-checklist.csv` + `05-evidence/screenshots/` (post-change testing)
 6. **Measurement**: `05-evidence/metrics/after-analysis.csv` (post-change pilots)
@@ -742,7 +739,7 @@ All files reference each other for full traceability.
 
 ✋ **Stop and check**:
 - [ ] All 5 core documents present in `task2/`
-- [ ] Evidence artefacts organized in `05-evidence/`
+- [ ] Evidence artefacts organised in `05-evidence/`
 - [ ] README.md complete with summary
 - [ ] All files sanitized (no PII)
 - [ ] File names match spec exactly
@@ -754,7 +751,7 @@ All files reference each other for full traceability.
 ### Commit message
 
 ```bash
-git add templates/ src/main/kotlin/ data/metrics.csv analysis/ wk10/gradescope/task2/ wk10/lab-wk10/a11y/ backlog/backlog.csv
+git add templates/ src/main/kotlin/ data/metrics.csv analysis/ wk10/assessment/ wk10/lab-wk10/a11y/ backlog/backlog.csv
 
 git commit -m "$(cat <<'EOF'
 wk10s2: implemented inclusive redesign, verified, packaged Task 2
@@ -766,7 +763,7 @@ wk10s2: implemented inclusive redesign, verified, packaged Task 2
 - Completed accessibility regression checklist (21/22 pass, 1 contrast issue logged)
 - Ran verification pilots (n=3): T2 completion 67% → 100%, parity restored for no-JS
 - Collected before/after metrics: completion +33%, error rate -8%, median time -78ms (JS-on)
-- Packaged Gradescope Task 2 bundle: brief, checklist, metrics, code diffs, evidence
+- Packaged assessment bundle: brief, checklist, metrics, code diffs, evidence
 - Updated backlog: wk9-01, wk9-03 marked fixed with verification evidence
 
 Key results:
@@ -796,11 +793,11 @@ EOF
 
 5. **Evidence quality**: Is your evidence chain complete (data → analysis → fix → verification)? What's missing or weak?
 
-6. **Week 11 readiness**: Can you present this fix in 5 minutes (problem → data → solution → proof)? Practice your narrative.
+6. **Assessment readiness**: Can you present this fix in 5 minutes (problem → data → solution → proof)? Practice your narrative.
 
 ---
 
-## Looking Ahead: Week 11 Studio Crit
+## Looking Ahead: Week 11 (Optional Refinement Week 11 Studio Crit Early Marking)
 
 Next week:
 - **Lab 1**: Present evidence chains to peers (5 min each)
@@ -809,7 +806,7 @@ Next week:
 - **Lab 2**: Final refinements, portfolio assembly, submission prep
 
 **Before Week 11**:
-- Review Task 2 bundle—can you explain every file?
+- Review assessment bundle—can you explain every file?
 - Practice 5-min presentation (problem → data → fix → verification)
 - Identify 1-2 backup issues (if your main fix gets critiqued)
 
@@ -818,8 +815,9 @@ Next week:
 ## Further Reading & Resources
 
 ### Essential
-- Review `../../references/assistive-testing-checklist.md`
-- Review `../../references/evaluation-metrics-quickref.md`
+- Review [Assistive Testing Checklist](../references/assistive-testing-checklist.md)
+- Skim the [Screenshot Evidence Guide](../references/screenshot-guide.md)
+- Review [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md)
 - [WCAG 2.2 Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
 
 ### Accessible Error Handling
@@ -858,4 +856,4 @@ Next week:
 
 ---
 
-**Lab complete!** You have an implemented, verified, documented inclusive redesign ready for Week 11 critique and final submission.
+**Lab complete!** You have an implemented, verified, documented inclusive redesign ready for final assessment submission (due end Week 10).
