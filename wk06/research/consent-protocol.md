@@ -49,15 +49,20 @@ Before starting, I will ask:
 
 **Verbal consent sufficient**. If yes, I'll note:
 - Date/time: [2025-11-23 00:05]
-- Pseudonym: [e.g., "Participant A"]
+- Pseudonym: [Participant A]
 - Consent confirmed: [AS]
-
+- Date/time: [2025-11-25 11:37]
+- Pseudonym: [Participant B]
+- Consent confirmed: [EW]
+- Date/time: [2025-11-25 12:15]
+- Pseudonym: [Participant C]
+- Consent confirmed: [TW]
 ---
 
 ## Opt-Out Process
 
 If you change your mind:
-1. Email: [your-university-email]
+1. Email: [kfqv2167@leeds.ac.uk]
 2. Include: interview date + pseudonym
 3. I'll delete notes within 48 hours
 4. Confirm deletion via email
@@ -66,7 +71,7 @@ If you change your mind:
 
 ## Contact
 
-**Researcher**: [Your Name], [your-email@leeds.ac.uk]
+**Researcher**: [Danil Marinkovic], [kfqv2167@leeds.ac.uk]
 **Module Lead**: Dr. [Name], [module-email]
 **University Ethics**: ethics@leeds.ac.uk
 
