@@ -1,0 +1,4 @@
+id,title,story_ref,story_type,need,type,severity,inclusion_risk,evidence,notes,candidate_fix
+1, Notification system, stories.md#story_s1,Job story, Reduce cognitive load, Usability,Medium,"cognitive,motor",P-A notes L55,No ability to send notifactions for tasks that need to be completed soon, false
+2, Priority levels, stories.md#story_s2, Job Story, Reduce cognitive load and make task managment easier for individuals with a SR, Usability, Medium,"cognitive, screen reader",P-B notes L100,If tasks can not be ordered by priority important tasks can be buried under new tasks and forgotten about, false
+3, Complexity levels, stories.md#story_s3, Job Story, Allow users to, Usability, Medium,"cognitive",P-C notes L75,If all tasks are presented in the same way users with cognitive disabilities may find it difficult to identify which tasks are simple and which are complex, false
