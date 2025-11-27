@@ -5,3 +5,4 @@ id,title,story_ref,story_type,need,type,severity,inclusion_risk,evidence,notes,c
 4, Keyboard navigation, stories.md#story_s4, Job story, Make navigating the page easier for keyboard users,Accessibility, High,"motor, situational (keyboard user)",P-B notes L108, If keyboard navigation was not considered during development users can struggle to use application with only keyboard, false  
 5, Dark mode, stories.md#story_s5, Job story, Provide more contrast for users in bright enviroments or low vision users, Accessibility, High, "low vision, situational (bright enviroment)", P-B notes L116, If dark mode not implemented then users with low vision or in bright enviroments might struggle to see the app, false
 6,
+
