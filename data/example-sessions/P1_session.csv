@@ -1,0 +1,7 @@
+ts_iso,session_id,request_id,task_code,step,outcome,ms,http_status,js_mode
+2025-10-15T14:00:00Z,P1_7a9f,r001,T1_filter,start,ok,0,200,htmx
+2025-10-15T14:00:12Z,P1_7a9f,r002,T1_filter,success,ok,12000,200,htmx
+2025-10-15T14:00:30Z,P1_7a9f,r003,T2_edit,start,ok,0,200,htmx
+2025-10-15T14:00:38Z,P1_7a9f,r004,T2_edit,success,ok,8000,200,htmx
+2025-10-15T14:01:00Z,P1_7a9f,r005,T3_delete,start,ok,0,200,htmx
+2025-10-15T14:01:05Z,P1_7a9f,r006,T3_delete,success,ok,5000,200,htmx

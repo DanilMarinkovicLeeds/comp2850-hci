@@ -1,0 +1,163 @@
+package routes
+
+import io.ktor.server.application.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+import io.ktor.http.*
+import model.Task
+import model.ValidationResult
+import storage.TaskStore
+import isHtmxRequest
+import renderTemplate
+
+/**
+ * Week 7: Inline editing routes.
+ *
+ * **Pattern**: Toggle between view and edit modes without page navigation.
+ *
+ * **Accessibility**:
+ * - Focus management (edit mode focuses input)
+ * - Cancel button restores view mode
+ * - Validation errors announced
+ * - Works without HTMX (falls back to separate edit page)
+ */
+fun Routing.configureEditRoutes() {
+    val store = TaskStore()
+
+    /**
+     * GET /tasks/{id}/edit - Show edit form
+     *
+     * **HTMX mode**: Returns inline edit form fragment
+     * **No-JS mode**: Returns full edit page
+     */
+    get("/tasks/{id}/edit") {
+        val id = call.parameters["id"] ?: run {
+            call.respond(HttpStatusCode.BadRequest, "Missing task ID")
+            return@get
+        }
+
+        val task = store.getById(id)
+        if (task == null) {
+            call.respond(HttpStatusCode.NotFound, "Task not found")
+            return@get
+        }
+
+        if (call.isHtmxRequest()) {
+            // HTMX mode: Return inline edit form fragment
+            val editHtml = call.renderTemplate(
+                "tasks/_edit.peb",
+                mapOf("task" to task.toPebbleContext())
+            )
+            call.respondText(editHtml, ContentType.Text.Html)
+        } else {
+            // No-JS mode: Full page with edit form
+            // (For simplicity, redirect to list with edit=id query param)
+            call.respondRedirect("/tasks?edit=$id")
+        }
+    }
+
+    /**
+     * POST /tasks/{id}/update - Save edited task
+     *
+     * **Dual-mode behavior**:
+     * - **HTMX**: Returns updated view fragment + status
+     * - **No-JS**: Redirects to task list (PRG)
+     */
+    post("/tasks/{id}/update") {
+        val id = call.parameters["id"] ?: run {
+            call.respond(HttpStatusCode.BadRequest, "Missing task ID")
+            return@post
+        }
+
+        val task = store.getById(id)
+        if (task == null) {
+            call.respond(HttpStatusCode.NotFound, "Task not found")
+            return@post
+        }
+
+        val params = call.receiveParameters()
+        val newTitle = params["title"]?.trim() ?: ""
+
+        // Validate new title
+        when (val result = Task.validate(newTitle)) {
+            is ValidationResult.Error -> {
+                // Validation failed
+                if (call.isHtmxRequest()) {
+                    // HTMX: Return edit form with error
+                    val editHtml = call.renderTemplate(
+                        "tasks/_edit.peb",
+                        mapOf(
+                            "task" to task.toPebbleContext(),
+                            "error" to result.message
+                        )
+                    )
+                    val statusHtml = """
+                        <div id="status" hx-swap-oob="true" role="alert" class="error">
+                            ${result.message}
+                        </div>
+                    """.trimIndent()
+                    call.respondText(editHtml + "\n" + statusHtml, ContentType.Text.Html, HttpStatusCode.UnprocessableEntity)
+                } else {
+                    // No-JS: Redirect back (error messaging needs query params or session)
+                    call.respondRedirect("/tasks?error=" + result.message.take(50))
+                }
+                return@post
+            }
+
+            ValidationResult.Success -> {
+                // Update task
+                val updated = task.copy(title = newTitle)
+                store.update(updated)
+
+                if (call.isHtmxRequest()) {
+                    // HTMX: Return view mode fragment
+                    val viewHtml = call.renderTemplate(
+                        "tasks/_item.peb",
+                        mapOf("task" to updated.toPebbleContext())
+                    )
+                    val statusHtml = """
+                        <div id="status" hx-swap-oob="true" role="status">
+                            Task "${updated.title}" updated successfully.
+                        </div>
+                    """.trimIndent()
+                    call.respondText(viewHtml + "\n" + statusHtml, ContentType.Text.Html)
+                } else {
+                    // No-JS: Redirect to list
+                    call.respondRedirect("/tasks")
+                }
+            }
+        }
+    }
+
+    /**
+     * POST /tasks/{id}/cancel - Cancel edit and return to view mode
+     *
+     * **HTMX mode**: Returns view fragment
+     * **No-JS mode**: Redirects to list
+     */
+    post("/tasks/{id}/cancel") {
+        val id = call.parameters["id"] ?: run {
+            call.respond(HttpStatusCode.BadRequest, "Missing task ID")
+            return@post
+        }
+
+        val task = store.getById(id)
+        if (task == null) {
+            call.respond(HttpStatusCode.NotFound, "Task not found")
+            return@post
+        }
+
+        if (call.isHtmxRequest()) {
+            // HTMX: Return view mode fragment (no changes)
+            val viewHtml = call.renderTemplate(
+                "tasks/_item.peb",
+                mapOf("task" to task.toPebbleContext())
+            )
+            call.respondText(viewHtml, ContentType.Text.Html)
+        } else {
+            // No-JS: Just redirect back
+            call.respondRedirect("/tasks")
+        }
+    }
+}

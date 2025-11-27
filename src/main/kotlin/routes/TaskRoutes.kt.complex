@@ -1,0 +1,231 @@
+package routes
+
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.encodeURLParameter
+import io.ktor.server.application.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+import model.Task
+import model.ValidationResult
+import storage.TaskStore
+import utils.Page
+import utils.logValidationError
+import utils.jsMode
+import utils.timed
+import isHtmxRequest
+import renderTemplate
+
+private const val PAGE_SIZE = 10
+
+private data class PaginatedTasks(
+    val page: Page<Map<String, Any>>,
+    val context: Map<String, Any>
+)
+
+fun Routing.configureTaskRoutes() {
+    val store = TaskStore()
+
+    // Week 8: paginated list view with HTMX fragment support
+    get("/tasks") {
+        call.timed("T0_list", call.jsMode()) {
+            val query = requestedQuery()
+            val page = requestedPage()
+            val paginated = paginateTasks(store, query, page)
+            val html = renderTemplate("tasks/index.peb", paginated.context)
+            respondText(html, ContentType.Text.Html)
+        }
+    }
+
+    get("/") {
+        call.respondRedirect("/tasks")
+    }
+
+    // Week 8: fragment route powers live filtering + pagination updates
+    get("/tasks/fragment") {
+        call.timed("T1_filter", call.jsMode()) {
+            val query = requestedQuery()
+            val page = requestedPage()
+            if (!isHtmxRequest()) {
+                respondRedirect(redirectPath(query, page))
+                return@timed
+            }
+
+            val paginated = paginateTasks(store, query, page)
+            val statusHtml = filterStatusFragment(query, paginated.page.totalItems)
+            respondTaskArea(paginated, statusHtml)
+        }
+    }
+
+    // Week 7 & 9: create task, log instrumentation, refresh task area
+    post("/tasks") {
+        call.timed("T2_add", call.jsMode()) {
+            val params = receiveParameters()
+            val title = params["title"]?.trim() ?: ""
+            val query = params["q"].toQuery()
+
+            when (val validation = Task.validate(title)) {
+                is ValidationResult.Error -> {
+                    val outcome = when {
+                        title.isBlank() -> "blank_title"
+                        title.length < 3 -> "min_length"
+                        title.length > 100 -> "max_length"
+                        else -> "invalid_title"
+                    }
+                    logValidationError("T2_add", outcome)
+                    if (isHtmxRequest()) {
+                        val paginated = paginateTasks(store, query, 1)
+                        val statusHtml = messageStatusFragment(validation.message, isError = true)
+                        respondTaskArea(paginated, statusHtml)
+                    } else {
+                        respondRedirect(redirectPath(query, 1))
+                    }
+                }
+
+                ValidationResult.Success -> {
+                    val task = Task(title = title)
+                    store.add(task)
+
+                    if (isHtmxRequest()) {
+                        val paginated = paginateTasks(store, query, 1)
+                        val statusHtml = messageStatusFragment(
+                            """Task "${task.title}" added successfully."""
+                        )
+                        respondTaskArea(paginated, statusHtml)
+                    } else {
+                        respondRedirect(redirectPath(query, 1))
+                    }
+                }
+            }
+        }
+    }
+
+    post("/tasks/{id}/toggle") {
+        call.timed("T3_toggle", call.jsMode()) {
+            val id = parameters["id"] ?: run {
+                respond(HttpStatusCode.BadRequest, "Missing task ID")
+                return@timed
+            }
+
+            val updated = store.toggleComplete(id)
+
+            if (updated == null) {
+                respond(HttpStatusCode.NotFound, "Task not found")
+                return@timed
+            }
+
+            if (isHtmxRequest()) {
+                val taskHtml = renderTemplate(
+                    "tasks/_item.peb",
+                    mapOf("task" to updated.toPebbleContext())
+                )
+
+                val statusText = if (updated.completed) "marked complete" else "marked incomplete"
+                val statusHtml = messageStatusFragment(
+                    """Task "${updated.title}" $statusText."""
+                )
+
+                respondText(taskHtml + "\n" + statusHtml, ContentType.Text.Html)
+            } else {
+                respondRedirect("/tasks")
+            }
+        }
+    }
+
+    post("/tasks/{id}/delete") {
+        call.timed("T4_delete", call.jsMode()) {
+            val id = parameters["id"] ?: run {
+                respond(HttpStatusCode.BadRequest, "Missing task ID")
+                return@timed
+            }
+
+            val task = store.getById(id)
+            val deleted = store.delete(id)
+
+            if (!deleted) {
+                respond(HttpStatusCode.NotFound, "Task not found")
+                return@timed
+            }
+
+            if (isHtmxRequest()) {
+                val statusHtml = messageStatusFragment(
+                    """Task "${task?.title ?: "Unknown"}" deleted."""
+                )
+                respondText(statusHtml, ContentType.Text.Html)
+            } else {
+                respondRedirect("/tasks")
+            }
+        }
+    }
+
+    get("/tasks/search") {
+        call.timed("T1_filter", call.jsMode()) {
+            val query = requestedQuery()
+            val page = requestedPage()
+            val paginated = paginateTasks(store, query, page)
+
+            if (isHtmxRequest()) {
+                val statusHtml = filterStatusFragment(query, paginated.page.totalItems)
+                respondTaskArea(paginated, statusHtml)
+            } else {
+                val html = renderTemplate("tasks/index.peb", paginated.context)
+                respondText(html, ContentType.Text.Html)
+            }
+        }
+    }
+}
+
+private fun paginateTasks(store: TaskStore, query: String, page: Int): PaginatedTasks {
+    val tasks = (if (query.isBlank()) store.getAll() else store.search(query))
+        .map { it.toPebbleContext() }
+    val pageData = Page.paginate(tasks, currentPage = page, pageSize = PAGE_SIZE)
+    val context = pageData.toPebbleContext("tasks") + mapOf("query" to query)
+    return PaginatedTasks(pageData, context)
+}
+
+private suspend fun ApplicationCall.respondTaskArea(
+    paginated: PaginatedTasks,
+    statusHtml: String? = null
+) {
+    val fragment = renderTaskArea(paginated)
+    val payload = if (statusHtml != null) fragment + "\n" + statusHtml else fragment
+    respondText(payload, ContentType.Text.Html)
+}
+
+private suspend fun ApplicationCall.renderTaskArea(paginated: PaginatedTasks): String {
+    val context = paginated.context
+    val listHtml = renderTemplate("tasks/_list.peb", context)
+    val pagerHtml = renderTemplate("tasks/_pager.peb", context)
+    return listHtml + "\n" + pagerHtml
+}
+
+private fun filterStatusFragment(query: String, total: Int): String {
+    return if (query.isBlank()) {
+        """<div id="status" hx-swap-oob="true" role="status"></div>"""
+    } else {
+        val noun = if (total == 1) "task" else "tasks"
+        """<div id="status" hx-swap-oob="true" role="status">Found $total $noun matching "$query".</div>"""
+    }
+}
+
+private fun messageStatusFragment(message: String, isError: Boolean = false): String {
+    val role = if (isError) "alert" else "status"
+    val cssClass = if (isError) """ class="error"""" else ""
+    return """<div id="status" hx-swap-oob="true" role="$role"$cssClass>$message</div>"""
+}
+
+private fun redirectPath(query: String, page: Int): String {
+    val params = mutableListOf<String>()
+    if (query.isNotBlank()) params += "q=${query.encodeURLParameter()}"
+    if (page > 1) params += "page=$page"
+    return if (params.isEmpty()) "/tasks" else "/tasks?${params.joinToString("&")}"
+}
+
+private fun String?.toQuery(): String = this?.trim()?.takeIf { it.isNotEmpty() } ?: ""
+
+private fun ApplicationCall.requestedQuery(): String =
+    request.queryParameters["q"].toQuery()
+
+private fun ApplicationCall.requestedPage(): Int =
+    request.queryParameters["page"]?.toIntOrNull()?.takeIf { it > 0 } ?: 1

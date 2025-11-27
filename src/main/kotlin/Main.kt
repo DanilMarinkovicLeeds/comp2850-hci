@@ -1,42 +1,25 @@
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.netty.Netty
 import io.ktor.server.sessions.*
 import io.ktor.server.routing.*
-import io.ktor.server.http.content.*
-import io.ktor.server.plugins.callloging.*
-import io.ktor.server.request.*
-import io.ktor.server.response.*
+import io.ktor.server.http.content.staticResources
+import io.ktor.server.plugins.callloging.CallLogging
+import io.ktor.server.plugins.statuspages.*
+import io.ktor.server.request.httpMethod
+import io.ktor.server.request.path
+import io.ktor.server.response.respondText
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.ContentType
+import io.ktor.util.AttributeKey
 import io.pebbletemplates.pebble.PebbleEngine
-import routes.taskRoutes
+import routes.configureTaskRoutes
 import routes.configureHealthCheck
+// import routes.configureEditRoutes // Week 7
+import utils.ReqIdKey
 import utils.SessionData
+import utils.generateRequestId
 import java.io.StringWriter
-import io.ktor.util.*
-
-/**
- * NOTE FOR NON-INTELLIJ IDEs (VSCode, Eclipse, etc.):
- * IntelliJ IDEA automatically adds imports as you type. If using a different IDE,
- * you may need to manually add imports. The commented imports below show what you'll need
- * for future weeks. Uncomment them as needed when following the lab instructions.
- *
- * When using IntelliJ: You can ignore the commented imports below - your IDE will handle them.
- */
-
-// Week 7+ imports (inline edit routes):
-// import routes.configureEditRoutes  // Separate route file for edit functionality
-
-// Week 8+ imports (status pages, error handling):
-// import io.ktor.http.ContentType     // For custom error page content types
-// import io.ktor.http.HttpStatusCode  // For status codes in error handlers
-// import io.ktor.server.plugins.statuspages.*  // Status pages plugin (StatusPages, status)
-
-// Week 9+ imports (request tracking, metrics):
-// import utils.ReqIdKey                // AttributeKey for request ID tracking
-// import utils.generateRequestId       // Generate unique request IDs for logging
-// Note: ApplicationCallPipeline is covered by io.ktor.server.application.*
-
-// Week 9 also adds ApplicationCallPipeline.Setup intercept in configureRouting() for session/reqId
 
 /**
  * Main entry point for COMP2850 HCI server-first application.
@@ -64,6 +47,7 @@ fun main() {
         configureLogging()
         configureTemplating()
         configureSessions()
+        configureStatusPages()
         configureRouting()
     }.start(wait = true)
 }
@@ -105,9 +89,9 @@ fun Application.configureTemplating() {
             .strictVariables(false) // Allow undefined variables (fail gracefully)
             .build()
 
-    environment.monitor.subscribe(ApplicationStarted) {
-        log.info("✓ Pebble templates loaded from resources/templates/")
-        log.info("✓ Server running on configured port")
+    environment.monitor.subscribe(ApplicationStarted) { app ->
+        app.log.info("✓ Pebble templates loaded from resources/templates/")
+        app.log.info("✓ Server running on configured port")
     }
 
     // Make Pebble available to all routes
@@ -198,6 +182,79 @@ fun Application.configureSessions() {
 }
 
 /**
+ * HTML template for 404 error page.
+ * Extracted as constant for code organization (detekt LongMethod compliance).
+ */
+private const val ERROR_404_HTML =
+    """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>404 - Page Not Found</title>
+        <style>
+            body {
+                background-color: #000;
+                color: #fff;
+                font-family: system-ui, -apple-system, sans-serif;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 1rem;
+            }
+            main {
+                text-align: center;
+            }
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            p {
+                font-size: 1.125rem;
+                margin: 0.5rem 0;
+            }
+            a {
+                color: #4A90E2;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            a:focus {
+                outline: 3px solid #4A90E2;
+                outline-offset: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>404 - Page Not Found</h1>
+            <p>The page you're looking for doesn't exist.</p>
+            <p><a href="/tasks">Go to Task List</a></p>
+        </main>
+    </body>
+    </html>
+    """
+
+/**
+ * Configure custom error pages for better UX.
+ *
+ * **Error handling**:
+ * - 404 Not Found: friendly error page with navigation
+ * - 500 Internal Server Error: generic error page (no details exposed)
+ */
+fun Application.configureStatusPages() {
+    install(StatusPages) {
+        status(HttpStatusCode.NotFound) { call, status ->
+            call.respondText(ERROR_404_HTML.trimIndent(), ContentType.Text.Html, status)
+        }
+    }
+}
+
+/**
  * Configure application routing.
  *
  * **Route organization**:
@@ -207,6 +264,14 @@ fun Application.configureSessions() {
  */
 fun Application.configureRouting() {
     routing {
+        intercept(ApplicationCallPipeline.Setup) {
+            call.sessions.get<SessionData>() ?: call.sessions.set(SessionData())
+            if (call.attributes.getOrNull(ReqIdKey) == null) {
+                call.attributes.put(ReqIdKey, generateRequestId())
+            }
+            proceed()
+        }
+
         // Static files (CSS, JS, HTMX library)
         staticResources("/static", "static")
 
@@ -214,7 +279,7 @@ fun Application.configureRouting() {
         configureHealthCheck()
 
         // Task management routes (main feature)
-        // TODO: Week 6 Lab 1 - Implement taskRoutes()
-        taskRoutes()
+        configureTaskRoutes()
+        // configureEditRoutes() // Week 7 feature
     }
 }

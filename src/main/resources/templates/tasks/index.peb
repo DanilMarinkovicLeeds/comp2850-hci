@@ -1,51 +1,94 @@
 {% extends "_layout/base.peb" %}
 
+{% block title %}Task List | COMP2850{% endblock %}
+
 {% block content %}
-<h1>Tasks</h1>
+<article>
+    <header>
+        <h1>Task Manager</h1>
+        <p>
+            Manage your tasks with full keyboard and screen reader support.
+            {% if totalItems > 0 %}
+                Currently {{ totalItems }} task{% if totalItems != 1 %}s{% endif %}.
+            {% else %}
+                No tasks yet. Add one below!
+            {% endif %}
+        </p>
+    </header>
 
-{# Add Task Form - Week 6 #}
-<section aria-labelledby="add-heading">
-  <h2 id="add-heading">Add a new task to list</h2>
-  <form action="/tasks" method="post"
-        hx-post="/tasks"
-        hx-target="#task-list"
-        hx-swap="beforeend">
-    <label for="title">Title</label>
-    <input type="text" id="title" name="title" required
-           placeholder="e.g., Buy shampoo" aria-describedby="title-hint">
-    <small id="title-hint">Keep it short and specific.</small>
-    {# Minor issue: unlabeled input for Week 7 Lab 2 #}
-    <input type="text" name="priority" placeholder="Priority (optional)">
-    <button type="submit">Add New Task</button>
-  </form>
-</section>
+    {# Error Summary - Week 8 Lab 2 #}
+    {% if error %}
+    <div role="alert" aria-live="assertive" class="error-summary" id="error-summary" tabindex="-1">
+        <h2>There is a problem</h2>
+        <ul>
+            {% if error == "title" %}
+            <li><a href="#task-title">{% if msg == "too_long" %}Title is too long (max 200 characters){% else %}Title is required. Please enter at least one character.{% endif %}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
 
-{# Task List - Week 6 (inline, no partials) #}
-{# TODO: Week 7 Lab 1 Activity 2 Step 4
-   Update this section to use conditional includes:
-   - Add {% if editingId and editingId == task.id %} check
-   - Include tasks/_edit.peb when editing
-   - Include tasks/_item.peb when viewing
-   - See mdbook for full implementation
-#}
-<section aria-labelledby="list-heading">
-  <h2 id="list-heading">Current tasks ({{ tasks | length }})</h2>
-  {# Minor Issue: Image without alt text for Week 7 Lab 2 discovery #}
-  <img src="/static/img/icon.png" width="16" height="16">
-  <ul id="task-list">
-    {% for task in tasks %}
-      <li id="task-{{ task.id }}">
-        <span>{{ task.title }}</span>
-        <form action="/tasks/{{ task.id }}/delete" method="post" style="display: inline;"
-              hx-post="/tasks/{{ task.id }}/delete"
-              hx-target="#task-{{ task.id }}"
-              hx-swap="outerHTML">
-          <button type="submit" aria-label="Delete task: {{ task.title }}">Delete</button>
+    {# Add Task Form - Week 7 #}
+    <section aria-labelledby="add-heading">
+        <h2 id="add-heading">Add New Task</h2>
+
+        <form action="/tasks" method="post"
+              hx-post="/tasks"
+              hx-target="#task-area"
+              hx-swap="innerHTML"
+              hx-on::after-request="this.reset()">
+
+            <label for="task-title">Task Title</label>
+            <input type="text"
+                   id="task-title"
+                   name="title"
+                   required
+                   {% if error == "title" %}aria-invalid="true" aria-describedby="title-hint title-error"{% else %}aria-describedby="title-hint"{% endif %}
+                   placeholder="e.g., Buy milk">
+
+            <small id="title-hint">Keep it short and specific.</small>
+            {% if error == "title" %}
+            <p id="title-error" class="error-message">
+                {% if msg == "too_long" %}Title is too long (max 200 characters){% else %}Title is required. Please enter at least one character.{% endif %}
+            </p>
+            {% endif %}
+
+            <button type="submit">Add Task</button>
         </form>
-      </li>
-    {% else %}
-      <li>No tasks yet. Add one above!</li>
-    {% endfor %}
-  </ul>
-</section>
+    </section>
+
+    {# Search/Filter Tasks Form - Week 8 #}
+    <section aria-labelledby="search-heading">
+        <h2 id="search-heading">Filter Tasks</h2>
+
+        <form action="/tasks" method="get"
+              hx-get="/tasks/fragment"
+              hx-trigger="keyup changed delay:300ms from:#search-query, submit"
+              hx-target="#task-area"
+              hx-swap="innerHTML"
+              hx-push-url="true">
+
+            <label for="search-query">Filter by title</label>
+            <input type="search"
+                   id="search-query"
+                   name="q"
+                   placeholder="Type to filter..."
+                   aria-describedby="search-hint"
+                   value="{{ query | default('') }}">
+
+            <small id="search-hint">Filters tasks as you type; works without JavaScript.</small>
+            <button type="submit">Apply Filter</button>
+        </form>
+    </section>
+
+    {# Task List #}
+    <section aria-labelledby="list-heading">
+        <h2 id="list-heading">Your Tasks</h2>
+
+        <div id="task-area">
+            {% include "tasks/_list.peb" %}
+            {% include "tasks/_pager.peb" %}
+        </div>
+    </section>
+</article>
 {% endblock %}

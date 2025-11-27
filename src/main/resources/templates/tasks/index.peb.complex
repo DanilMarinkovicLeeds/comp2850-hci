@@ -1,0 +1,84 @@
+{% extends "_layout/base.peb" %}
+
+{% block title %}Task List | COMP2850{% endblock %}
+
+{% block content %}
+<article>
+    <header>
+        <h1>Task Manager</h1>
+        <p>
+            Manage your tasks with full keyboard and screen reader support.
+            {% if totalItems > 0 %}
+                Currently {{ totalItems }} task{% if totalItems != 1 %}s{% endif %}.
+            {% else %}
+                No tasks yet. Add one below!
+            {% endif %}
+        </p>
+    </header>
+
+    {# Add Task Form #}
+    <section aria-labelledby="add-heading">
+        <h2 id="add-heading">Add New Task</h2>
+
+        {# Dual-mode form: works with and without JavaScript #}
+        {# No-JS: Standard form submission (POST-Redirect-GET) #}
+        {# HTMX: Partial update (fragment + OOB status) #}
+        <form action="/tasks" method="post"
+              hx-post="/tasks"
+              hx-target="#task-area"
+              hx-swap="innerHTML"
+              hx-include="#search-query">
+
+            <label for="task-title">
+                Task Title
+                <span class="required" aria-label="required">*</span>
+            </label>
+
+            <input type="text"
+                   id="task-title"
+                   name="title"
+                   required
+                   minlength="3"
+                   maxlength="100"
+                   aria-describedby="title-hint"
+                   placeholder="Enter task description">
+
+            <small id="title-hint">3-100 characters</small>
+
+            <button type="submit">Add Task</button>
+        </form>
+    </section>
+
+    {# Search Tasks Form #}
+    <section aria-labelledby="search-heading">
+        <h2 id="search-heading">Search Tasks</h2>
+
+        <form action="/tasks/search" method="get"
+              hx-get="/tasks/fragment"
+              hx-trigger="keyup changed delay:500ms from:#search-query"
+              hx-target="#task-area"
+              hx-swap="innerHTML"
+              hx-push-url="true">
+
+            <label for="search-query">Search by title</label>
+            <input type="search"
+                   id="search-query"
+                   name="q"
+                   placeholder="Filter tasks..."
+                   value="{{ query | default('') }}">
+
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    {# Task List #}
+    <section aria-labelledby="list-heading">
+        <h2 id="list-heading">Your Tasks</h2>
+
+        <div id="task-area">
+            {% include "tasks/_list.peb" %}
+            {% include "tasks/_pager.peb" %}
+        </div>
+    </section>
+</article>
+{% endblock %}

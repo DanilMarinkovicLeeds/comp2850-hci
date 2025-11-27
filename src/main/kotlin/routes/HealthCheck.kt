@@ -1,9 +1,16 @@
 package routes
 
+<<<<<<< HEAD
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.http.*
+=======
+import io.ktor.http.*
+import io.ktor.server.application.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+>>>>>>> minimal/main
 
 /**
  * Health check endpoint for monitoring server status.

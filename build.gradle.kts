@@ -2,8 +2,6 @@ plugins {
     application
     kotlin("jvm") version "2.2.21"
     id("io.ktor.plugin") version "2.3.11"
-    id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
-    id("io.gitlab.arturbosch.detekt") version "1.23.8"
 }
 
 group = "uk.ac.leeds.comp2850"
@@ -39,7 +37,13 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
     testImplementation("io.ktor:ktor-client-content-negotiation-jvm:$ktorVersion")
+<<<<<<< HEAD
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:2.2.21")
+=======
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:2.2.21") {
+        exclude(group = "org.jetbrains.kotlin", module = "kotlin-test-junit")
+    }
+>>>>>>> minimal/main
 }
 
 application {
@@ -58,6 +62,7 @@ tasks.withType<JavaExec> {
 kotlin {
     jvmToolchain(21)
 }
+<<<<<<< HEAD
 
 // Code quality: Detekt (static analysis)
 // Reports violations as warnings, doesn't fail build
@@ -72,3 +77,5 @@ detekt {
 configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
     ignoreFailures.set(true) // Report but don't fail build
 }
+=======
+>>>>>>> minimal/main
