@@ -23,3 +23,7 @@ package-lock.json
 
 # Generated slide outputs
 slides-output/
+
+/data/metrics.csv
+/wk*/research/*notes.md  # Interview notes with pseudonyms
+*.log
