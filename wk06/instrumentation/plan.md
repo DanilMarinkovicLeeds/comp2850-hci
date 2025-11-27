@@ -7,6 +7,7 @@ Based on backlog priorities:
 - Task deletion (confirmation shown?)
 - Filter usage (reset frequency)
 - Keyboard navigation (Tab presses per task)
+- Edit task information (time, validation)
 
 ## Metrics to Capture
 
